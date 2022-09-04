@@ -1,0 +1,3 @@
+.grid-container-dolitrace {  display: grid;  grid-template-columns:  auto auto;  grid-template-rows: 80px 200px;  gap: 1px;  background-color: #004466;   padding: 1px;}
+
+.grid-container-dolitrace > div {  background-color: #00ffff;   text-align: center;  padding: 1px 0;  /* font-size: 30px; */}.grid-container-dolitrace-multifarms {  display: grid;  grid-template-columns: auto auto auto;  grid-template-rows: 80px 200px;  gap: 1px;  background-color: #004466;   padding: 1px;}.grid-container-dolitrace-multifarms > div {  background-color: #00ffff;   text-align: center;  padding: 1px 0;  /* font-size: 30px; */}.newharvestbtn {	background-image: url("/custom/dolitrace/img/cropplans_new_plot.png") no-repeat;	 background-color: #00ff00;	width: 25px;    height: 25px;}

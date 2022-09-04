@@ -1,0 +1,106 @@
+# Copyright (C) 2022 Alice Adminson <aadminson@example.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+#
+# Generic
+#
+
+# Module label 'ModuleDoliTraceName'
+ModuleDoliTraceName = DoliTrace
+# Module description 'ModuleDoliTraceDesc'
+ModuleDoliTraceDesc = DoliTrace description
+
+#
+# Admin page
+#
+DoliTraceSetup = DoliTrace setup
+Settings = Settings
+DoliTraceSetupPage = DoliTrace setup page
+DOLITRACE_MYPARAM1 = My param 1
+DOLITRACE_MYPARAM1Tooltip = My param 1 tooltip
+DOLITRACE_MYPARAM2=My param 2
+DOLITRACE_MYPARAM2Tooltip=My param 2 tooltip
+DOLITRACE_SIMPLIFIED=Traceability simplified
+DOLITRACE_SIMPLIFIEDTooltip=The operations on the fields is not taken in account
+
+#
+# About page
+#
+About = About
+DoliTraceAbout = About DoliTrace
+DoliTraceAboutPage = DoliTrace about page
+
+#
+# Sample page
+#
+MyPageName = My page name
+
+#
+# Sample widget
+#
+MyWidget = My widget
+MyWidgetDescription = My widget description
+
+
+
+# CUstom
+
+
+# Custom
+DoliFarmAreaDashboard = Dashboard doliFARM
+Farms = Aziende
+Farm = Azienda
+doliTRACE = Tracciabilità
+DoliTraceArea = Tracciabilità
+Plot = Plot
+Plots = Plots
+Coltures = Colture
+Colture = Coltura
+Dashboard = Pannello di controllo
+FarmsNetwork = Elenco Aziende
+NewPlots = Nuovi Appezzamenti
+ProductionsPlans = Piano di produzione
+Traceability = Tracciamento lotto
+doliCERT = Registri BIO
+Workbook = Quaderno di campagna
+ComplaintsManagement = Reclami
+SalesRegister = Vendite
+PurchaseRegister = Acquisti
+RawMaterials = Materie prime
+doliLOGISTIC = Logistica
+CMRGenerator = CMR 
+PricesListGenerator = Listini
+PallettLoadSimulationTool = Simulatore di carico
+doliCOMMERCE = eCommerce
+PlotsList = Lista appezzamenti
+NewPlot = Nuovo appezzamento
+ProductionPlan = Piano di produzione
+SuppliersList = Registro fornitori
+SupplierList = Fornitori
+CompliantsManagement = Registro Reclami
+SalesRgister = Registro Vendite
+PurchasesRegister = Registro Acquisti
+RawMaterials = Registro Materie Prime
+LastCollectings = Ultime Raccolte
+LastFarms = Last Farm
+LastPlantings = Ultimi impianti
+LastDDT = Ultimi DDT
+ListOfPrices = Listini
+CropsPlan=Crops Plan
+CropPlan=Crop Plan
+NewCropPlan=Nuovo Piano di Produzione
+Harvests=Harvests
+Harvest=Harvest
+NewHarvest=New Harvest
