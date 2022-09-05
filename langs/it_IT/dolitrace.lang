@@ -20,7 +20,7 @@
 # Module label 'ModuleDoliTraceName'
 ModuleDoliTraceName = DoliTrace
 # Module description 'ModuleDoliTraceDesc'
-ModuleDoliTraceDesc = DoliTrace description
+ModuleDoliTraceDesc = DoliTrace è un modulo della Suite doliFarm. Permette di gestire gli appezzamenti, i piani di produzione e le raccolte. Ad ogni raccolta viene assegnato un codice di tracciabilità che seguirà il prodotto in tutte le sue fasi fino alla vendita
 
 #
 # Admin page

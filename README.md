@@ -13,7 +13,8 @@ The module is part of the doliFARM suite. [Dolifarm.com](https://www.dolifarm.co
 DoliTRACE makes it possible to keep track of a farm's production plans and harvests. The module can be activated in simplified mode or in full mode to be compatible with the European GS1 regulation.
 
 ## REQUIREMENTS
-This module requires a Dolibarr platform installation. It has been tested for the version 15.0.1
+This module requires a Dolibarr platform installation. It has been tested for the version 15.0.1.
+Moreover, it is part of the doliFarm suite thus requires the module doliFam to be installed and activated
 
 ## TRANSLATION
 
