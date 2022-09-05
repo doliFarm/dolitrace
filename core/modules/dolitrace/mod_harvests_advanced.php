@@ -4,7 +4,7 @@
  * Copyright (C) 2005-2009  Regis Houssin               <regis.houssin@inodbox.com>
  * Copyright (C) 2008       Raphael Bertrand (Resultic) <raphael.bertrand@resultic.fr>
  * Copyright (C) 2019       Frédéric France             <frederic.france@netlogic.fr>
- *
+ * Copyright (C) 2022 	Luigi Grillo - luigi.grillo@gmail.com (http://luigigrillo.com)
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or
@@ -23,7 +23,7 @@
 /**
  * \file       htdocs/core/modules/mymodule/mod_myobject_advanced.php
  * \ingroup    mymodule
- * \brief      File containing class for advanced numbering model of MyObject
+ * \brief      File containing class for advanced numbering model of doliTrace
  */
 
 dol_include_once('/mymodule/core/modules/mymodule/modules_myobject.php');

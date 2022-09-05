@@ -1,5 +1,6 @@
 <?php
-/* Copyright (C) ---Put here your own copyright and developer email---
+/* opyright (C) 2022 Alice Adminson <aadminson@example.com>
+ * Copyright (C) 2022 	Luigi Grillo - luigi.grillo@gmail.com (http://luigigrillo.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

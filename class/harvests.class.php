@@ -1,6 +1,6 @@
 <?php
 /* Copyright (C) 2017  Laurent Destailleur <eldy@users.sourceforge.net>
- * Copyright (C) ---Put here your own copyright and developer email---
+ * Copyright (C) 2022 	Luigi Grillo - luigi.grillo@gmail.com (http://luigigrillo.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
  */
 
 /**
- * \file        htdocs/modulebuilder/template/class/harvests.class.php
+ * \file        class/harvests.class.php
  * \ingroup     dolitrace
  * \brief       This file is a CRUD class file for Harvests (Create/Read/Update/Delete)
  */

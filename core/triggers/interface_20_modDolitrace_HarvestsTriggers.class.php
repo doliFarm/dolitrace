@@ -1,6 +1,7 @@
 <?php
 /* Copyright (C) ---Put here your own copyright and developer email---
- *
+ * Copyright (C) 2022 	Luigi Grillo - luigi.grillo@gmail.com (http://luigigrillo.com)
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -18,7 +19,7 @@
 /**
  * \file    core/triggers/interface_20_modDolitrace_HarvestTriggers.class.php
  * \ingroup dolitrace
- * \brief   Example trigger.
+ * \brief   Trigger management.
  *
  * Put detailed description here.
  *
@@ -35,7 +36,7 @@ dol_include_once('/dolitrace/class/cropplans.class.php');
 
 
 /**
- *  Class of triggers for MyModule module
+ *  Class of triggers for Dolitrace module
  */
 class InterfaceHarvestsTriggers extends DolibarrTriggers
 {

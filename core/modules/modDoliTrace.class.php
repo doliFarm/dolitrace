@@ -9,7 +9,7 @@
  * Copyright (C) 2022 Alice Adminson <aadminson@example.com>
 
  * Copyright (C) 2022 Luigi Grillo - luigi.grillo@gmail.com (http://luigigrillo.com)
- * Last update: 05/01/2022
+ * 
 
  * This program is free software; you can redistribute it and/or modify
 
