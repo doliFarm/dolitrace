@@ -80,8 +80,8 @@ $scandir = GETPOST('scan_dir', 'alpha');
 $type = 'dolitrace';
 
 $arrayofparameters = array(
-	'DOLITRACE_MYPARAM1'=>array('type'=>'string', 'css'=>'minwidth500' ,'enabled'=>1),
-	'DOLITRACE_MYPARAM2'=>array('type'=>'textarea','enabled'=>1),
+	//'DOLITRACE_MYPARAM1'=>array('type'=>'string', 'css'=>'minwidth500' ,'enabled'=>1),
+	//'DOLITRACE_MYPARAM2'=>array('type'=>'textarea','enabled'=>1),
     'DOLITRACE_SIMPLIFIED'=>array('type'=>'yesno', 'enabled'=>1),
 	'DOLITRACE_COSTS_MANAGEMENT'=>array('type'=>'yesno', 'enabled'=>1),
 	'DOLITRACE_ORDER_SUPPLIER'=>array('type'=>'yesno', 'enabled'=>1),
