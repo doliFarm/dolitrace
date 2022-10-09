@@ -103,7 +103,8 @@ class crops extends CommonObject
 	 */
 	public $fields = array(
 		'rowid'        => array('type'=>'integer', 'label'=>'TechnicalID', 'enabled'=>1, 'visible'=>-2, 'noteditable'=>1, 'notnull'=> 1, 'index'=>1, 'position'=>1, 'comment'=>'Id', 'css'=>'left'),
-        'ref'         => array('type'=>'varchar(255)', 'label'=>'Crop', 'enabled'=>1, 'visible'=>1, 'position'=>10, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>1),
+        'code'         => array('type'=>'varchar(255)', 'label'=>'Crop', 'enabled'=>1, 'visible'=>1, 'position'=>10, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>1),
+        'label'         => array('type'=>'varchar(255)', 'label'=>'Label', 'enabled'=>1, 'visible'=>1, 'position'=>15, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>1),
 		'latingenus'   => array('type'=>'varchar(255)', 'label'=>'Latingenus', 'enabled'=>1, 'visible'=>1, 'noteditable'=>0, 'default'=>'', 'notnull'=> 1, 'showoncombobox'=>1, 'index'=>1, 'position'=>20, 'searchall'=>1, 'comment'=>'Reference of object', 'validate'=>1),
 		'localname'    => array('type'=>'varchar(255)', 'label'=>'Localname', 'enabled'=>1, 'visible'=>1, 'noteditable'=>0, 'default'=>'', 'notnull'=> 1, 'showoncombobox'=>1, 'index'=>1, 'position'=>30, 'searchall'=>1, 'comment'=>'Reference of object', 'validate'=>1),
 		'family'       => array('type'=>'varchar(255)', 'label'=>'Family', 'enabled'=>1, 'visible'=>1, 'noteditable'=>0, 'default'=>'', 'notnull'=> 1, 'showoncombobox'=>1, 'index'=>1, 'position'=>40, 'searchall'=>1, 'comment'=>'Reference of object', 'validate'=>1),
@@ -115,7 +116,7 @@ class crops extends CommonObject
 		'def_estimatedyield' => array('type'=>'integer:Unitdef:dolifarm/class/unitdef.class.php', 'label'=>'PlantingYieldUnit', 'picto'=>'user', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>100, 'foreignkey'=>'user.rowid'),
 		'note_public'   => array('type'=>'html', 'label'=>'NotePublic', 'enabled'=>1, 'visible'=>3, 'position'=>110, 'validate'=>1, 'cssview'=>'wordbreak'),
 		'note_private'  => array('type'=>'html', 'label'=>'NotePrivate', 'enabled'=>1, 'visible'=>3, 'position'=>115, 'validate'=>1, 'cssview'=>'wordbreak'),
-		'activated'    => array('type'=>'integer', 'label'=>'Activated', 'enabled'=>1, 'visible'=>-2, 'noteditable'=>1, 'notnull'=> 1, 'index'=>1, 'position'=>120, 'comment'=>'Id', 'css'=>'left'),
+		'active'    => array('type'=>'integer', 'label'=>'Activated', 'enabled'=>1, 'visible'=>-2, 'noteditable'=>1, 'notnull'=> 1, 'index'=>1, 'position'=>120, 'comment'=>'Id', 'css'=>'left'),
 		'status'       => array('type'=>'integer', 'label'=>'Status', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'default'=>0, 'index'=>1, 'position'=>130, 'arrayofkeyval'=>array(0=>'Draft', 1=>'Validated', 9=>'Canceled'), 'validate'=>1),
 		'tms' 		   => array('type'=>'timestamp', 'label'=>'TimeStamp', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>140),
 		'author' 	   => array('type'=>'integer:User:user/class/user.class.php', 'label'=>'Author', 'picto'=>'user', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>150, 'foreignkey'=>'user.rowid'),

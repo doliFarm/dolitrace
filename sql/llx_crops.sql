@@ -2,7 +2,8 @@
 
 CREATE TABLE llx_dolifarm_crops(
 	rowid INTEGER  AUTO_INCREMENT PRIMARY KEY,
-        ref VARCHAR(50),
+        code VARCHAR(15),
+        label VARCHAR(50),
         latingenus VARCHAR(50),
         localname VARCHAR(50),
         family VARCHAR(50),
@@ -14,7 +15,7 @@ CREATE TABLE llx_dolifarm_crops(
 		def_estimatedyield VARCHAR(30),
 		note_private TEXT,
 		note_public TEXT,
-        activated BOOLEAN,
+        active BOOLEAN,
 		status INTEGER (11),
 		tms TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
 		author VARCHAR(30)
