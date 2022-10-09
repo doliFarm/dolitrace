@@ -3,7 +3,7 @@
 CREATE TABLE llx_dolifarm_crops(
 	rowid INTEGER  AUTO_INCREMENT PRIMARY KEY,
         code VARCHAR(15),
-        label VARCHAR(50),
+        crop VARCHAR(50),
         latingenus VARCHAR(50),
         localname VARCHAR(50),
         family VARCHAR(50),
@@ -16,7 +16,7 @@ CREATE TABLE llx_dolifarm_crops(
 		note_private TEXT,
 		note_public TEXT,
         active BOOLEAN,
-		status INTEGER (11),
+		lang VARCHAR(6),
 		tms TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
 		author VARCHAR(30)
 )ENGINE=InnoDB;

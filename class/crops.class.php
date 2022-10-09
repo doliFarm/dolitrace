@@ -103,8 +103,8 @@ class crops extends CommonObject
 	 */
 	public $fields = array(
 		'rowid'        => array('type'=>'integer', 'label'=>'TechnicalID', 'enabled'=>1, 'visible'=>-2, 'noteditable'=>1, 'notnull'=> 1, 'index'=>1, 'position'=>1, 'comment'=>'Id', 'css'=>'left'),
-        'code'         => array('type'=>'varchar(255)', 'label'=>'Crop', 'enabled'=>1, 'visible'=>1, 'position'=>10, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>1),
-        'label'         => array('type'=>'varchar(255)', 'label'=>'Label', 'enabled'=>1, 'visible'=>1, 'position'=>15, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>1),
+        'code'         => array('type'=>'varchar(255)', 'label'=>'Code', 'enabled'=>1, 'visible'=>1, 'position'=>10, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>1),
+        'crop'         => array('type'=>'varchar(255)', 'label'=>'Crop', 'enabled'=>1, 'visible'=>1, 'position'=>15, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>1),
 		'latingenus'   => array('type'=>'varchar(255)', 'label'=>'Latingenus', 'enabled'=>1, 'visible'=>1, 'noteditable'=>0, 'default'=>'', 'notnull'=> 1, 'showoncombobox'=>1, 'index'=>1, 'position'=>20, 'searchall'=>1, 'comment'=>'Reference of object', 'validate'=>1),
 		'localname'    => array('type'=>'varchar(255)', 'label'=>'Localname', 'enabled'=>1, 'visible'=>1, 'noteditable'=>0, 'default'=>'', 'notnull'=> 1, 'showoncombobox'=>1, 'index'=>1, 'position'=>30, 'searchall'=>1, 'comment'=>'Reference of object', 'validate'=>1),
 		'family'       => array('type'=>'varchar(255)', 'label'=>'Family', 'enabled'=>1, 'visible'=>1, 'noteditable'=>0, 'default'=>'', 'notnull'=> 1, 'showoncombobox'=>1, 'index'=>1, 'position'=>40, 'searchall'=>1, 'comment'=>'Reference of object', 'validate'=>1),
@@ -340,8 +340,8 @@ class crops extends CommonObject
 		if (property_exists($object, 'ref')) {
 			$object->ref = empty($this->fields['ref']['default']) ? "Copy_Of_".$object->ref : $this->fields['ref']['default'];
 		}
-		if (property_exists($object, 'label')) {
-			$object->label = empty($this->fields['label']['default']) ? $langs->trans("CopyOf")." ".$object->label : $this->fields['label']['default'];
+		if (property_exists($object, 'crop')) {
+			$object->label = empty($this->fields['crop']['default']) ? $langs->trans("CopyOf")." ".$object->label : $this->fields['crop']['default'];
 		}
 		if (property_exists($object, 'status')) {
 			$object->status = self::STATUS_DRAFT;

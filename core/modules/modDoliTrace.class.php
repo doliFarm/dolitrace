@@ -417,31 +417,31 @@ class modDoliTrace extends DolibarrModules
 
 			// Request to select fields
 
-			'tabsql'=>array('SELECT f.rowid as rowid, f.code, f.label, f.latingenus, f.localname, f.family, f.species, f.photo, f.plantingrate,f.estimatedyield, f.active FROM '.MAIN_DB_PREFIX.'dolifarm_crops as f'),
+			'tabsql'=>array('SELECT f.rowid as rowid, f.code, f.crop, f.latingenus, f.localname, f.family, f.species, f.photo, f.plantingrate,f.estimatedyield, f.lang, f.active FROM '.MAIN_DB_PREFIX.'dolifarm_crops as f'),
 
 			// Sort order
 
-			'tabsqlsort'=>array("label ASC"),
+			'tabsqlsort'=>array("lang ASC, code ASC , crop ASC"),
 
 			// List of fields (result of select to show dictionary)
 
-			'tabfield'=>array("code,label"),
+			'tabfield'=>array("code,crop,localname,latingenus,family,species,plantingrate,estimatedyield,lang"),
 
 			// List of fields (list of fields to edit a record)
 
-			'tabfieldvalue'=>array("code,label"),
+			'tabfieldvalue'=>array("code,crop,localname,latingenus,family,species,plantingrate,estimatedyield,lang"),
 
 			// List of fields (list of fields for insert)
 
-			'tabfieldinsert'=>array("code,label"),
+			'tabfieldinsert'=>array("code,crop,localname,latingenus,family,species,plantingrate,estimatedyield,lang"),
 
 			// Name of columns with primary key (try to always name it 'rowid')
 
-			'tabrowid'=>array("rowid"),
+			'tabrowid'=>array("rowid","lang"),
 
 			// Condition to show each dictionary
 
-			'tabcond'=>array($conf->dolitrace->enabled, $conf->dolitrace->enabled, $conf->dolitrace->enabled)
+			'tabcond'=>array($conf->dolitrace->enabled)
 
 		);
 

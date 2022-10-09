@@ -106,7 +106,7 @@ class Cropplans extends CommonObject
 		'ref'           => array('type'=>'varchar(128)', 'label'=>'RefCropPlan', 'enabled'=>1, 'visible'=>1, 'noteditable'=>0, 'default'=>'', 'notnull'=> 1, 'showoncombobox'=>1, 'index'=>1, 'position'=>5, 'searchall'=>1, 'comment'=>'Reference of object', 'validate'=>1),
 		'fk_farm' 		=> array('type'=>'integer:Societe:societe/class/societe.class.php', 'label'=>'Farm', 'picto'=>'user', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>15, 'foreignkey'=>'societe.rowid'),
 		'fk_plot' 		=> array('type'=>'integer:Plots:dolitrace/class/plots.class.php', 'label'=>'Plot', 'picto'=>'', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>20, 'foreignkey'=>'dolifarm_plots.rowid'),
-		'fk_croptype' 	=> array('type'=>'integer:Crops:dolitrace/class/crops.class.php', 'label'=>'CropType', 'picto'=>'', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>30, 'foreignkey'=>'dolifarm_crops.rowid'),
+		'fk_croptype' 	=> array('type'=>'integer:Crops:dolitrace/class/crops.class.php:AddCreateButtonOrNot:(t.active=1)', 'label'=>'CropType', 'picto'=>'', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>30, 'foreignkey'=>'dolifarm_crops.rowid'),
 		'fk_project'	=> array('type'=>'integer:Project:projet/class/project.class.php', 'label'=>'Project', 'picto'=>'project', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 0, 'position'=>35, 'foreignkey'=>'project.rowid'),
 		'label'         => array('type'=>'varchar(255)', 'label'=>'Label', 'enabled'=>1, 'visible'=>1, 'position'=>40, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>1),
 		'startdate' 	=> array('type'=>'date', 'label'=>'StartDate', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>50),
@@ -314,7 +314,7 @@ class Cropplans extends CommonObject
 		$db->free($resqlfarmtype);
 		$this->fields['fk_farm']['type'] = 'integer:Societe:societe/class/societe.class.php:1:(t.fk_typent='.$farmtype->id.'):t.nom'; 
 		$this->fields['fk_plot']['type'] = 'integer:Plots:dolitrace/class/plots.class.php:1:(t.status=1)'; 
-		
+		$this->fields['fk_croptype']['type'] = 'integer:Crops:dolitrace/class/crops.class.php:AddCreateButtonOrNot:(t.active=1) and (t.lang = \''.$langs->defaultlang.'\' )'; 
 		// Unset fields that are disabled
 		foreach ($this->fields as $key => $val) {
 			if (isset($val['enabled']) && empty($val['enabled'])) {
