@@ -109,10 +109,10 @@ class Cropplans extends CommonObject
 		'fk_croptype' 	=> array('type'=>'integer:Crops:dolitrace/class/crops.class.php', 'label'=>'CropType', 'picto'=>'', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>30, 'foreignkey'=>'dolifarm_crops.rowid'),
 		'fk_project'	=> array('type'=>'integer:Project:projet/class/project.class.php', 'label'=>'Project', 'picto'=>'project', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 0, 'position'=>35, 'foreignkey'=>'project.rowid'),
 		'label'         => array('type'=>'varchar(255)', 'label'=>'Label', 'enabled'=>1, 'visible'=>1, 'position'=>40, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>1),
-		'note_public'   => array('type'=>'html', 'label'=>'NotePublic', 'enabled'=>1, 'visible'=>3, 'position'=>50, 'validate'=>1, 'cssview'=>'wordbreak'),
-		'note_private'  => array('type'=>'html', 'label'=>'NotePrivate', 'enabled'=>1, 'visible'=>3, 'position'=>55, 'validate'=>1, 'cssview'=>'wordbreak'),
-		'startdate' 	=> array('type'=>'datetime', 'label'=>'StartDate', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>60),
-		'finishdate' 	=> array('type'=>'datetime', 'label'=>'FinishDate', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>70),
+		'startdate' 	=> array('type'=>'date', 'label'=>'StartDate', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>50),
+		'finishdate' 	=> array('type'=>'date', 'label'=>'FinishDate', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>60),
+		'note_public'   => array('type'=>'html', 'label'=>'NotePublic', 'enabled'=>1, 'visible'=>3, 'position'=>70, 'validate'=>1, 'cssview'=>'wordbreak'),
+		'note_private'  => array('type'=>'html', 'label'=>'NotePrivate', 'enabled'=>1, 'visible'=>3, 'position'=>75, 'validate'=>1, 'cssview'=>'wordbreak'),
 		'estimatedyield' 			=> array('type'=>'real', 'label'=>'EstimatedYield', 'enabled'=>1, 'visible'=>1,  'index'=>1, 'isameasure'=>1, 'position'=>80),
 		'def_estimatedyieldunit' 	=> array('type'=>'integer:Unitdef:dolifarm/class/unitdef.class.php', 'label'=>'YieldUnit', 'picto'=>'unitdef', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>100, 'foreignkey'=>'unitdef.rowid'),
 		'def_yieldtodateunit' 		=> array('type'=>'integer:Unitdef:dolifarm/class/unitdef.class.php', 'label'=>'YieldUnit', 'picto'=>'', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>110, 'foreignkey'=>'unitdef.rowid'),
@@ -313,7 +313,8 @@ class Cropplans extends CommonObject
 		 }
 		$db->free($resqlfarmtype);
 		$this->fields['fk_farm']['type'] = 'integer:Societe:societe/class/societe.class.php:1:(t.fk_typent='.$farmtype->id.'):t.nom'; 
-
+		$this->fields['fk_plot']['type'] = 'integer:Plots:dolitrace/class/plots.class.php:1:(t.status=1)'; 
+		
 		// Unset fields that are disabled
 		foreach ($this->fields as $key => $val) {
 			if (isset($val['enabled']) && empty($val['enabled'])) {

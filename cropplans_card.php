@@ -90,6 +90,7 @@ dol_include_once('/dolitrace/lib/dolitrace_cropplans.lib.php');
 $langs->loadLangs(array("dolitrace@dolitrace", "other"));
 
 // Get parameters
+$new= GETPOST('new', 'bool');
 $id = GETPOST('id', 'int');
 $ref = GETPOST('ref', 'alpha');
 $action = GETPOST('action', 'aZ09');
@@ -101,6 +102,8 @@ $backtopageforcancel = GETPOST('backtopageforcancel', 'alpha');
 $lineid   = GETPOST('lineid', 'int');
 $fk_farm  = GETPOST('fk_farm', 'int');
 $fk_plot  = GETPOST('fk_plot', 'int');
+	$startdate = GETPOST('startdate', 'date');;
+	$finishdate =GETPOST('finishdate', 'date');;
 
 // Initialize technical objects
 $object = new Cropplans($db);
@@ -109,7 +112,7 @@ $diroutputmassaction = $conf->dolitrace->dir_output.'/temp/massgeneration/'.$use
 $hookmanager->initHooks(array('cropplanscard', 'globalcard')); // Note that conf->hooks_modules contains array
 
 // Fields Configuration LG 28.05.2022
-if (!empty($fk_farm)) {
+if (!empty($fk_farm) && !($new)) {
 	$object->fields['fk_farm']['noteditable']=1;
 }
 if (!empty($fk_cropplans)) {
@@ -196,8 +199,14 @@ if (empty($reshook)) {
 	$triggermodname = 'DOLITRACE_CROPPLANS_MODIFY'; // Name of trigger action code to execute when we modify record
 
 	// Actions cancel, add, update, update_extras, confirm_validate, confirm_delete, confirm_deleteline, confirm_clone, confirm_close, confirm_setdraft, confirm_reopen
-	include DOL_DOCUMENT_ROOT.'/core/actions_addupdatedelete.inc.php';
 
+	if ( strtotime(str_replace("/", "-", $startdate))  > strtotime(str_replace("/", "-", $finishdate)) ) {    
+	     // TODO keep the editing page (update or create) 
+	     setEventMessages($langs->trans("ErrorStartDateFinishDate"), null, 'errors');
+	    // header('Location: '.$_SERVER["PHP_SELF"].'?id='.$id.'&action=edit');
+	}  else {
+		include DOL_DOCUMENT_ROOT.'/core/actions_addupdatedelete.inc.php';
+	}
 	// Actions when linking object each other
 	include DOL_DOCUMENT_ROOT.'/core/actions_dellink.inc.php';
 
@@ -270,7 +279,10 @@ if ($action == 'create') {
 	print '<input type="hidden" name="token" value="'.newToken().'">';
 	print '<input type="hidden" name="action" value="add">';
 	if (!empty($fk_plot)) print '<input type="hidden" name="fk_plot" value="'.$fk_plot.'">';
-	if (!empty($fk_farm)) print '<input type="hidden" name="fk_farm" value="'.$fk_farm.'">';
+	if (!empty($fk_farm)) { 
+		print '<input type="hidden" name="fk_farm" value="'.$fk_farm.'">';
+		$object->fields['fk_plot']['type'] = 'integer:Plots:dolitrace/class/plots.class.php:AddCreateButtonOrNot:(t.fk_farm='.$fk_farm.') and (t.status=1)'; 
+	}
 
 	if ($backtopage) {
 		print '<input type="hidden" name="backtopage" value="'.$backtopage.'">';
@@ -599,9 +611,7 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 		$linktoelem = $form->showLinkToObjectBlock($object, null, array('cropplans'));
 		$somethingshown = $form->showLinkedObjectBlock($object);
 
-		print "---------------->$linktoelem--";
 		$object->fetchObjectLinked($object->id);
-		print_r($object->linkedObjects);
 
 		print '</div><div class="fichehalfright">';
 
@@ -630,6 +640,13 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 
 	include DOL_DOCUMENT_ROOT.'/core/tpl/card_presend.tpl.php';
 }
+
+echo "<script>
+			$('#fk_farm').change(function() {
+					// alert($(this).val()) 
+					window.location.replace(window.location.href + \"&fk_farm=\"+$(this).val()+\"&new=true\")
+				});
+		</script>";
 
 // End of page
 llxFooter();

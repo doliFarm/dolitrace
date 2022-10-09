@@ -140,9 +140,9 @@ class modDoliTrace extends DolibarrModules
 
 		// Author
 
-		$this->editor_name = 'Editor name';
+		$this->editor_name = 'Luigi Grillo';
 
-		$this->editor_url = 'https://www.example.com';
+		$this->editor_url = 'https://www.dolifarm.com';
 
 
 
@@ -273,7 +273,7 @@ class modDoliTrace extends DolibarrModules
 
 		// List of module class names as string that must be enabled if this module is enabled. Example: array('always1'=>'modModuleToEnable1','always2'=>'modModuleToEnable2', 'FR1'=>'modModuleToEnableFR'...)
 
-		$this->depends = array('always1'=>'modFarm');
+		$this->depends = array('always1'=>'modDoliFarm');
 
 		$this->requiredby = array(); // List of module class names as string to disable if this one is disabled. Example: array('modModuleToDisable1', ...)
 

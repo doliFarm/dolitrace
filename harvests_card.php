@@ -86,6 +86,7 @@ dol_include_once('/dolitrace/lib/dolitrace_harvests.lib.php');
 $langs->loadLangs(array("dolitrace@dolitrace", "other"));
 
 // Get parameters
+$new= GETPOST('new', 'bool');
 $id = GETPOST('id', 'int');
 $ref = GETPOST('ref', 'alpha');
 $action = GETPOST('action', 'aZ09');
@@ -105,7 +106,7 @@ $diroutputmassaction = $conf->dolitrace->dir_output.'/temp/massgeneration/'.$use
 $hookmanager->initHooks(array('harvestscard', 'globalcard')); // Note that conf->hooks_modules contains array
 
 // Fields Configuration LG 28.05.2022
-if (!empty($fk_farm)) {
+if (!empty($fk_farm) && $action != "create") {
 	$object->fields['fk_farm']['noteditable']=1;
 }
 if (!empty($fk_cropplan)) {
@@ -352,7 +353,8 @@ if ($action == 'create') {
 		print '<input type="hidden" name="fk_cropplan" value="'.$fk_cropplan.'">';
 	}
 	if ($fk_farm) {
-		print '<input type="hidden" name="fk_farm" value="'.$fk_farm.'">';
+		print '<input type="hidden" name="fk_farm" value="'.$fk_farm.'">';	
+		$object->fields['fk_cropplan']['type'] = 'integer:Cropplans:dolitrace/class/cropplans.class.php:AddCreateButtonOrNot:(t.fk_farm='.$fk_farm.') and (t.status=1)'; 
 	}
 	if ($backtopage) {
 		print '<input type="hidden" name="backtopage" value="'.$backtopage.'">';
@@ -727,6 +729,14 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 	include DOL_DOCUMENT_ROOT.'/core/tpl/card_presend.tpl.php';
 }
 
+echo "<script>
+			$('#fk_farm').change(function() {
+					// alert($(this).val()) 
+					window.location.replace(window.location.href + \"&fk_farm=\"+$(this).val()+\"&new=true\")
+				});
+		</script>";
+
 // End of page
 llxFooter();
 $db->close();
+
