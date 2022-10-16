@@ -170,7 +170,7 @@ class modDoliTrace extends DolibarrModules
 
 		// To use a supported fa-xxx css style of font awesome, use this->picto='xxx'
 
-		$this->picto = 'generic';
+		$this->picto = 'dolitrace@dolitrace';
 
 
 

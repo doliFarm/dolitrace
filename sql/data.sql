@@ -9,7 +9,7 @@
 -- IF EXISTS (select * from `llx_dolifarm_crops`)
 -- SELECT 'Table is not empty'
 -- ELSE
-INSERT INTO `llx_dolifarm_crops` (`code`, `crop`, `family`, `latingenus`, `localname`,  `species`, `photo`, `plantingrate`, `def_plantingunit`, `estimatedyield`, `def_estimatedyield`, `note_public`, `active`, `lang` ) VALUES
+-- INSERT INTO `llx_dolifarm_crops` (`code`, `crop`, `family`, `latingenus`, `localname`,  `species`, `photo`, `plantingrate`, `def_plantingunit`, `estimatedyield`, `def_estimatedyield`, `note_public`, `active`, `lang` ) VALUES
 	('ALMOND','Almonds', 'Rosaceae', NULL, NULL, NULL, NULL, NULL, NULL, NULL,NULL, NULL,1,'en_US'),
 	('APPLE','Apple', 'Rosaceae', NULL, NULL, NULL, NULL, NULL, NULL, NULL,NULL, NULL,1,'en_US'),
 	('APRICOT','Apricot', 'Rosaceae', NULL, NULL, NULL, NULL, NULL, NULL, NULL,NULL, NULL,1,'en_US'),

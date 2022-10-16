@@ -72,6 +72,8 @@ Plot = Appezzamento
 Plots = Appezzamenti
 Crops = Colture
 Crop = Coltura
+PlotName=Nome Appezzamento
+CropPlanName=Nome Piano Produzione
 Dashboard = Pannello di controllo
 FarmsNetwork = Elenco Aziende
 NewPlots = Nuovi Appezzamenti
@@ -106,6 +108,7 @@ CropPlan=Piano di Produzione
 NewCropPlan=Nuovo Piano di Produzione
 Harvests=Raccolte
 Harvest=Raccolta
+HarvestName=Nome Raccolta
 NewHarvest=Nuova Raccolta
 Tracecode=Codice Tracciabilità:
 BodyCA=Organismo di controllo
@@ -162,7 +165,7 @@ OrderSupplier=Ordine Fornitore
 OnStock=Caricamento in stock
 ManifacturingOrder=Ordine di lavorazione
 CropPlansToBeValidated=Piano di produzione da validare
-
+PlotSize=Dimensione (Ha)
 
 doliCERT = Certif. & Registri BIO
 NewPlot = Nuovo Appezzamento

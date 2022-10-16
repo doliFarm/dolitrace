@@ -68,7 +68,7 @@ class Harvests extends CommonObject
 	/**
 	 * @var string String with name of icon for harvests. Must be the part after the 'object_' into object_harvests.png
 	 */
-	public $picto = 'harvests@dolitrace';
+	public $picto = 'harvest@dolitrace';
 
 
 	const STATUS_DRAFT = 0;
@@ -115,10 +115,10 @@ class Harvests extends CommonObject
 		'fk_farm' 		=> array('type'=>'integer:Societe:societe/class/societe.class.php', 'label'=>'Farm', 'picto'=>'user', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>20, 'foreignkey'=>'societe.rowid'),
 		'fk_cropplan' 	=> array('type'=>'integer:Cropplans:dolitrace/class/cropplans.class.php:1:t.status=1', 'label'=>'CropPlan', 'picto'=>'user', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>30, 'foreignkey'=>'dolifarm_cropplans.rowid'),
 		'date'			=> array('type'=>'datetime', 'label'=>'DateCreation', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>40),
-        'label'         => array('type'=>'varchar(255)', 'label'=>'Label', 'enabled'=>1, 'visible'=>1, 'position'=>50, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>1),
+        'label'         => array('type'=>'varchar(255)', 'label'=>'HarvestName', 'enabled'=>1, 'visible'=>1, 'position'=>50, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>1),
 		'yield'         => array('type'=>'real', 'label'=>'Yield', 'enabled'=>1, 'visible'=>1, 'noteditable'=>0,'notnull'=> 1,  'position'=>60, 'searchall'=>0, 'isameasure'=>1, 'help'=>'Help text for quantity', 'css'=>'maxwidth75imp', 'validate'=>1),
 		'def_yieldunit' => array('type'=>'integer:Unitdef:dolifarm/class/unitdef.class.php', 'label'=>'YieldUnit', 'picto'=>'yieldunit', 'enabled'=>1, 'visible'=>-2, 'position'=>70, 'notnull'=>-1, 'index'=>1, 'validate'=>1, 'css'=>'maxwidth500 widthcentpercentminusxx'),
-        'quantity'      => array('type'=>'real', 'label'=>'QuantityBoxes', 'enabled'=>1, 'visible'=>1, 'noteditable'=>0, 'notnull'=> 1,  'position'=>80, 'searchall'=>0, 'isameasure'=>1, 'help'=>'Help text for quantity', 'css'=>'maxwidth75imp', 'validate'=>1),
+        'quantity'      => array('type'=>'real', 'label'=>'QuantityBoxes', 'enabled'=>1, 'visible'=>1, 'noteditable'=>0, 'notnull'=> 0,  'position'=>80, 'searchall'=>0, 'isameasure'=>1, 'help'=>'Help text for quantity', 'css'=>'maxwidth75imp', 'validate'=>1),
 		'def_quantityunit' => array('type'=>'integer:Unitdef:dolifarm/class/unitdef.class.php', 'label'=>'YieldUnit', 'picto'=>'quantityunit', 'enabled'=>1, 'visible'=>-2, 'position'=>90, 'notnull'=>-1, 'index'=>1, 'validate'=>1, 'css'=>'maxwidth500 widthcentpercentminusxx'),
 		'costmaterial'  => array('type'=>'price', 'label'=>'CostMaterial', 'enabled'=>1, 'visible'=>1, 'default'=>'null', 'position'=>110, 'searchall'=>0, 'isameasure'=>1, 'help'=>'Help text for amount', 'validate'=>1),
 		'costmanpower'  => array('type'=>'price', 'label'=>'CostManpower', 'enabled'=>1, 'visible'=>1, 'default'=>'null', 'position'=>120, 'searchall'=>0, 'isameasure'=>1, 'help'=>'Help text for amount', 'validate'=>1),

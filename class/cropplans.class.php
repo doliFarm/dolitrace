@@ -108,7 +108,7 @@ class Cropplans extends CommonObject
 		'fk_plot' 		=> array('type'=>'integer:Plots:dolitrace/class/plots.class.php', 'label'=>'Plot', 'picto'=>'', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>20, 'foreignkey'=>'dolifarm_plots.rowid'),
 		'fk_croptype' 	=> array('type'=>'integer:Crops:dolitrace/class/crops.class.php:AddCreateButtonOrNot:(t.active=1)', 'label'=>'CropType', 'picto'=>'', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>30, 'foreignkey'=>'dolifarm_crops.rowid'),
 		'fk_project'	=> array('type'=>'integer:Project:projet/class/project.class.php', 'label'=>'Project', 'picto'=>'project', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 0, 'position'=>35, 'foreignkey'=>'project.rowid'),
-		'label'         => array('type'=>'varchar(255)', 'label'=>'Label', 'enabled'=>1, 'visible'=>1, 'position'=>40, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>1),
+		'label'         => array('type'=>'varchar(255)', 'label'=>'CropPlanName', 'enabled'=>1, 'visible'=>1, 'position'=>40, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>1),
 		'startdate' 	=> array('type'=>'date', 'label'=>'StartDate', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>50),
 		'finishdate' 	=> array('type'=>'date', 'label'=>'FinishDate', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>60),
 		'note_public'   => array('type'=>'html', 'label'=>'NotePublic', 'enabled'=>1, 'visible'=>3, 'position'=>70, 'validate'=>1, 'cssview'=>'wordbreak'),

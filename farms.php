@@ -1734,13 +1734,15 @@ while ($i < min($num, $limit)) {
 		   // print '<br>';
 	   
   	   $newcardbutton = dolGetButtonTitle($langs->trans('NewHarvest'), '', 'fa  fa-plus-circle', dol_buildpath('/dolitrace/harvests_card.php', 1).'?action=create&fk_farm='.$companystatic->id.'&backtopage='.urlencode($_SERVER['PHP_SELF']), '', $permissiontoadd);
-	   print '<div class = "inline-block">'.$newcardbutton.'</div>';
+	  //  print '<div class = "inline-block">'.$newcardbutton.'</div>';
 	   // print '<div class = "inline-block"><a href='.DOL_URL_ROOT.'/custom/dolitrace/harvests_card.php?farmid='.$companystatic->id.'>'.img_picto($langs->trans("NewArvest"), 'on').'</a><br></div>';
 	   // $newcardbutton = dolGetButtonTitle($langs->trans('NewPlot'), '', 'fa new-plots', dol_buildpath('/dolitrace/plots_card.php', 1).'?action=create&fk_farm='.$companystatic->id.'&backtopage='.urlencode($_SERVER['PHP_SELF']), '', $permissiontoadd);
 	   //print '<div class = "inline-block">'.$newcardbutton.'</div>';
-	   print '<div class = "inline-block"><a href="'.dol_buildpath('/dolitrace/plots_card.php', 1).'">'.img_picto($langs->trans("NewPlot"),"new_plot.png@dolitrace",'style="width: 40px;higth: 36px;"').'</a></div>';
-	   $newcardbutton = dolGetButtonTitle($langs->trans('NewCropPlan'), '', 'fa fa-plus-circle', dol_buildpath('/dolitrace/cropplans_card.php', 1).'?action=create&fk_farm='.$companystatic->id.'&backtopage='.urlencode($_SERVER['PHP_SELF']), '', $permissiontoadd);
-	   print '<div class = "inline-block">'.$newcardbutton.'</div>';
+	   print '<div class = "inline-block" style="padding: 5px;"><a href="'.dol_buildpath('/dolitrace/harvests_card.php', 1).'?action=create&fk_farm='.$companystatic->id.'&backtopage='.urlencode($_SERVER['PHP_SELF']).'">'.img_picto($langs->trans("NewHarvest"),"new_harvest.png@dolitrace",'style="width: 40px;higth: 36px;"').'</a></div>';
+	   print '<div class = "inline-block" style="padding: 5px;"><a href="'.dol_buildpath('/dolitrace/plots_card.php', 1).'?action=create&fk_farm='.$companystatic->id.'&backtopage='.urlencode($_SERVER['PHP_SELF']).'">'.img_picto($langs->trans("NewPlot"),"new_plot.png@dolitrace",'style="width: 40px;higth: 36px;"').'</a></div>';
+	   print '<div class = "inline-block" style="padding: 5px;"><a href="'.dol_buildpath('/dolitrace/cropplans_card.php', 1).'?action=create&fk_farm='.$companystatic->id.'&backtopage='.urlencode($_SERVER['PHP_SELF']).'">'.img_picto($langs->trans("NewCroplan"),"new_cropplan.png@dolitrace",'style="width: 40px;higth: 36px;"').'</a></div>';
+	   // $newcardbutton = dolGetButtonTitle($langs->trans('NewCropPlan'), '', 'fa fa-plus-circle', dol_buildpath('/dolitrace/cropplans_card.php', 1).'?action=create&fk_farm='.$companystatic->id.'&backtopage='.urlencode($_SERVER['PHP_SELF']), '', $permissiontoadd);
+	   // print '<div class = "inline-block">'.$newcardbutton.'</div>';
 	}
 	if (($massactionbutton || $massaction) && $contextpage != 'poslist') {   // If we are in select mode (massactionbutton defined) or if we have already selected and sent an action ($massaction) defined
 		$selected = 0;
