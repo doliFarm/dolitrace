@@ -82,6 +82,8 @@ dol_include_once('/dolitrace/class/harvests.class.php');
 dol_include_once('/dolitrace/class/dolitrace.class.php');
 dol_include_once('/dolitrace/lib/dolitrace_harvests.lib.php');
 
+
+
 // Load translation files required by the page
 $langs->loadLangs(array("dolitrace@dolitrace", "other"));
 
@@ -98,6 +100,7 @@ $backtopageforcancel = GETPOST('backtopageforcancel', 'alpha');
 $lineid   = GETPOST('lineid', 'int');
 $fk_farm  = GETPOST('fk_farm', 'int');
 $fk_cropplan  = GETPOST('fk_cropplan', 'int');
+$tracecode = GETPOST('tracecode', 'alpha');
 
 // Initialize technical objects
 $object = new Harvests($db);
@@ -106,7 +109,7 @@ $diroutputmassaction = $conf->dolitrace->dir_output.'/temp/massgeneration/'.$use
 $hookmanager->initHooks(array('harvestscard', 'globalcard')); // Note that conf->hooks_modules contains array
 
 // Fields Configuration LG 28.05.2022
-if (!empty($fk_farm) && $action != "create") {
+if (!empty($fk_farm) ) {
 	$object->fields['fk_farm']['noteditable']=1;
 }
 if (!empty($fk_cropplan)) {
@@ -379,7 +382,7 @@ if ($action == 'create') {
 
 	// Common attributes
 	include DOL_DOCUMENT_ROOT.'/core/tpl/commonfields_add.tpl.php';
-
+	
 	// Other attributes
 	include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_add.tpl.php';
 
@@ -392,6 +395,8 @@ if ($action == 'create') {
 	print '</form>';
 
 	//dol_set_focus('input[name="ref"]');
+
+
 }
 
 // Part to edit record
@@ -552,6 +557,10 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 	include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_view.tpl.php';
 
 	print '</table>';
+	
+	// QR COde TODO MIAO
+	print '<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=1673031731&choe=UTF-8" title="Link to Google.com" />';
+
 	print '</div>';
 	print '</div>';
 
@@ -691,8 +700,9 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 			$urlsource = $_SERVER["PHP_SELF"]."?id=".$object->id;
 			$genallowed = $permissiontoread; // If you can read, you can build the PDF to read content
 			$delallowed = $permissiontoadd; // If you can create/edit, you can remove a file on card
+			$genallowed =1 ;
 			// print $formfile->showdocuments('dolitrace:Harvests', $object->element.'/'.$objref, $filedir, $urlsource, $genallowed, $delallowed, $object->model_pdf, 1, 0, 0, 28, 0, '', '', '', $langs->defaultlang,'',$object);
-			print $formfile->showdocuments('dolitrace:Harvests', $objref, $filedir, $urlsource, $genallowed, $delallowed, $object->model_pdf, 1, 0, 0, 28, 0, '', '', '', $langs->defaultlang, '', $object);
+			print $formfile->showdocuments('dolitrace:Harvests', $objref, $filedir, $urlsource, $genallowed, $delallowed, $object->model_pdf, 1, 0, 0, 28, 0, '', '', '', $langs->defaultlang, '', $object,0);
 
 		}
 

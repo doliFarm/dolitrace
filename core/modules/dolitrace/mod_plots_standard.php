@@ -29,7 +29,7 @@ dol_include_once('/dolitrace/core/modules/dolitrace/modules_harvests.php');
 /**
  *	Class to manage customer order numbering rules standard
  */
-class mod_harvests_standard extends ModeleNumRefHarvests
+class mod_plots_standard extends ModeleNumRefHarvests
 {
 	/**
 	 * Dolibarr version of the loaded document
@@ -37,7 +37,7 @@ class mod_harvests_standard extends ModeleNumRefHarvests
 	 */
 	public $version = 'dolibarr'; // 'development', 'experimental', 'dolibarr'
 
-	public $prefix = 'H';
+	public $prefix = 'P';
 
 	/**
 	 * @var string Error code (or message)

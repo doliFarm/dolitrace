@@ -110,6 +110,8 @@ Harvests=Raccolte
 Harvest=Raccolta
 HarvestName=Nome Raccolta
 NewHarvest=Nuova Raccolta
+Operations=Operazioni culturali
+NewOperation=Nuova Oper. culturale
 Tracecode=Codice Tracciabilità:
 BodyCA=Organismo di controllo
 LicenseNumber=Numero Licenza
@@ -169,11 +171,16 @@ PlotSize=Dimensione (Ha)
 
 doliCERT = Certif. & Registri BIO
 NewPlot = Nuovo Appezzamento
-NewHarvest = Nuova Raccolta
 NewCroplan = Nuovo Piano Produzione
 NewFarm = Nuova Azienda
 NewProductionOrder=Nuovo Ordine Produzione
 ProductionsPlans = Piano di produzione
 Traceability = Tracciamento lotto
 Certificates=Certificati
+
+HelpLabelCropPlan=E' un nuome generico che fa riferimento al piano di produzione. In tutti i casi il sistema assegnerà al piano di produzione una etichetta univoca.	
+HelpPlotLabel=E' un nuome generico che fa riferimento all'appezzamento. In tutti i casi il sistema assegnerà all'appezzamento una etichetta univoca.
+HelpMapReference=Inserisci un riferimento geografico (GPS, indirizzo, etc)
+HelpSize=Inserisci la dimensione dell'appezzamento
+HelpCertStatus=Indicare lo stato dell'appezzamento in funzione della certificazione Bio 
 

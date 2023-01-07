@@ -93,6 +93,7 @@ $langs->loadLangs(array("dolitrace@dolitrace", "other"));
 $new= GETPOST('new', 'bool');
 $id = GETPOST('id', 'int');
 $ref = GETPOST('ref', 'alpha');
+$label = GETPOST('label', 'alpha');
 $action = GETPOST('action', 'aZ09');
 $confirm = GETPOST('confirm', 'alpha');
 $cancel = GETPOST('cancel', 'aZ09');
@@ -102,8 +103,8 @@ $backtopageforcancel = GETPOST('backtopageforcancel', 'alpha');
 $lineid   = GETPOST('lineid', 'int');
 $fk_farm  = GETPOST('fk_farm', 'int');
 $fk_plot  = GETPOST('fk_plot', 'int');
-	$startdate = GETPOST('startdate', 'date');;
-	$finishdate =GETPOST('finishdate', 'date');;
+$startdate = GETPOST('startdate', 'date');;
+$finishdate =GETPOST('finishdate', 'date');;
 
 // Initialize technical objects
 $object = new Cropplans($db);
@@ -643,8 +644,11 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 
 echo "<script>
 			$('#fk_farm').change(function() {
-					// alert($(this).val()) 
-					window.location.replace(window.location.href + \"&fk_farm=\"+$(this).val()+\"&new=true\")
+			        if (window.location.href.includes(\"fk_farm\")) {
+						window.location.replace(window.location.href.replace(/fk_farm=[0-9]/, \"fk_farm=\"+$(this).val()));
+					} else {
+						window.location.replace(window.location.href + \"&fk_farm=\"+$(this).val()+\"&new=true\"+\"&label=\"+$(label).val())
+					}
 				});
 		</script>";
 

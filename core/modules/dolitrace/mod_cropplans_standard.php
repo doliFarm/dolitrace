@@ -29,7 +29,7 @@ dol_include_once('/dolitrace/core/modules/dolitrace/modules_harvests.php');
 /**
  *	Class to manage customer order numbering rules standard
  */
-class mod_harvests_standard extends ModeleNumRefHarvests
+class mod_cropplans_standard extends ModeleNumRefHarvests
 {
 	/**
 	 * Dolibarr version of the loaded document
@@ -37,7 +37,7 @@ class mod_harvests_standard extends ModeleNumRefHarvests
 	 */
 	public $version = 'dolibarr'; // 'development', 'experimental', 'dolibarr'
 
-	public $prefix = 'H';
+	public $prefix = 'CP';
 
 	/**
 	 * @var string Error code (or message)
@@ -121,16 +121,17 @@ class mod_harvests_standard extends ModeleNumRefHarvests
 	public function getNextValue($object)
 	{
 		global $db, $conf;
-
+dol_syslog(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> getNextValue" , LOG_DEBUG);
 		// first we get the max value
 		$posindice = strlen($this->prefix) + 6;
 		$sql = "SELECT MAX(CAST(SUBSTRING(ref FROM ".$posindice.") AS SIGNED)) as max";
-		$sql .= " FROM ".MAIN_DB_PREFIX."dolifarm_harvests";
+		$sql .= " FROM ".MAIN_DB_PREFIX."dolifarm_cropplans";
 		$sql .= " WHERE ref LIKE '".$db->escape($this->prefix)."____-%'";
 		if ($object->ismultientitymanaged == 1) {
 			$sql .= " AND entity = ".$conf->entity;
 		} elseif ($object->ismultientitymanaged == 2) {
 			// TODO
+			dol_syslog(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  mod_cropplans_standard TODO", LOG_DEBUG);
 		}
 
 		$resql = $db->query($sql);
@@ -142,7 +143,7 @@ class mod_harvests_standard extends ModeleNumRefHarvests
 				$max = 0;
 			}
 		} else {
-			dol_syslog("mod_harvests_standard::getNextValue", LOG_DEBUG);
+			dol_syslog(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  mod_cropplans_standard", LOG_DEBUG);
 			return -1;
 		}
 
@@ -156,7 +157,7 @@ class mod_harvests_standard extends ModeleNumRefHarvests
 			$num = sprintf("%04s", $max + 1);
 		}
 
-		dol_syslog("mod_harvests_standard::getNextValue return ".$this->prefix.$yymm."-".$num);
+		dol_syslog(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  mod_cropplans_standard::getNextValue return ".$this->prefix.$yymm."-".$num);
 		return $this->prefix.$yymm."-".$num;
 	}
 }

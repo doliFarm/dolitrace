@@ -102,14 +102,14 @@ class Plots extends CommonObject
 	 * @var array  Array with all fields and their property. Do not use it as a static var. It may be modified by constructor.
 	 */
 	public $fields = array(
-		'rowid'         => array('type'=>'integer', 'label'=>'TechnicalID', 'enabled'=>1, 'visible'=>-2, 'noteditable'=>1, 'notnull'=> 1, 'index'=>1, 'position'=>10, 'comment'=>'Id', 'css'=>'left'),
-		'ref'           => array('type'=>'varchar(128)', 'label'=>'RefPlot', 'enabled'=>1, 'visible'=>1, 'noteditable'=>0, 'default'=>'', 'notnull'=> 1, 'showoncombobox'=>1, 'position'=>20, 'searchall'=>1, 'comment'=>'Reference of object', 'validate'=>1),
+		'rowid'         => array('type'=>'integer', 'label'=>'TechnicalID', 'enabled'=>1, 'visible'=>-2, 'noteditable'=>1, 'notnull'=> 1, 'index'=>1, 'position'=>1, 'comment'=>'Id', 'css'=>'left'),
+		'ref'           => array('type'=>'varchar(128)', 'label'=>'RefPlot', 'enabled'=>1, 'visible'=>4, 'noteditable'=>0, 'default'=>'(PROV)', 'notnull'=> 1, 'showoncombobox'=>1, 'position'=>10, 'searchall'=>1, 'comment'=>'Reference of object', 'validate'=>1),
+		'label'         => array('type'=>'varchar(255)', 'label'=>'PlotName', 'enabled'=>1, 'visible'=>1, 'position'=>20, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'HelpPlotLabel', 'showoncombobox'=>2, 'validate'=>0),
 		'fk_farm' 		=> array('type'=>'integer:Societe:societe/class/societe.class.php', 'label'=>'Farm', 'picto'=>'user', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>30, 'foreignkey'=>'societe.rowid'),
-		'label'         => array('type'=>'varchar(255)', 'label'=>'PlotName', 'enabled'=>1, 'visible'=>1, 'position'=>40, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>0),
-		'mapreference'  => array('type'=>'varchar(255)', 'label'=>'MapReference', 'enabled'=>1, 'visible'=>1, 'position'=>50, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>0),
-		'size'         => array('type'=>'real', 'label'=>'PlotSize', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'default'=>'', 'position'=>60, 'searchall'=>0, 'isameasure'=>1, 'help'=>'Help text for quantity', 'css'=>'maxwidth75imp', 'validate'=>0),
+		'mapreference'  => array('type'=>'varchar(255)', 'label'=>'MapReference', 'enabled'=>1, 'visible'=>1, 'position'=>50, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'HelpMapReference', 'showoncombobox'=>2, 'validate'=>0),
+		'size'         => array('type'=>'real', 'label'=>'PlotSize', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'default'=>'', 'position'=>60, 'searchall'=>0, 'isameasure'=>1, 'help'=>'HelpSize', 'css'=>'maxwidth75imp', 'validate'=>0),
 		'def_sizeunit'   => array('type'=>'integer:Unitdef:dolifarm/class/unitdef.class.php', 'label'=>'SizeUnit', 'default'=>'0', 'picto'=>'', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>70, 'foreignkey'=>'user.rowid'),
-		'def_organicstatus'  => array('type'=>'sellist:dolifarm_dictionary:label:rowid:module:(active = 1) and (code = \'DF_PLSTAT\'):label', 'label'=>'OrganicStatus', 'notnull'=> 1,'enabled'=>1, 'visible'=>1, 'position'=>80, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>0),
+		'def_organicstatus'  => array('type'=>'sellist:dolifarm_dictionary:label:rowid:module:(active = 1) and (code = \'DF_PLSTAT\'):label', 'label'=>'OrganicStatus', 'notnull'=> 1,'enabled'=>1, 'visible'=>1, 'position'=>80, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'HelpCertStatus', 'showoncombobox'=>2, 'validate'=>0),
 		'conversionstart' => array('type'=>'datetime', 'label'=>'ConversionStart', 'enabled'=>1, 'visible'=>1, 'position'=>90),
 		'conversionfinish' => array('type'=>'datetime', 'label'=>'ConversionEnd', 'enabled'=>1, 'visible'=>1,  'position'=>100),
 		'note_public'   => array('type'=>'html', 'label'=>'NotePublic', 'enabled'=>1, 'visible'=>3, 'position'=>110, 'validate'=>1, 'cssview'=>'wordbreak'),

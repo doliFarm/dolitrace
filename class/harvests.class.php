@@ -110,12 +110,12 @@ class Harvests extends CommonObject
 	 */ 
 	public $fields = array(
 		'rowid'         => array('type'=>'integer', 'label'=>'TechnicalID', 'enabled'=>1, 'visible'=>-2, 'noteditable'=>1, 'notnull'=> 1, 'index'=>1, 'position'=>1, 'comment'=>'Id', 'css'=>'left'),
-		'ref'           => array('type'=>'varchar(128)', 'label'=>'RefHarvest', 'enabled'=>1, 'visible'=>1, 'noteditable'=>0, 'default'=>'', 'notnull'=> 1, 'showoncombobox'=>1, 'index'=>1, 'position'=>10, 'searchall'=>1, 'comment'=>'Reference of object', 'validate'=>1),
+        'label'         => array('type'=>'varchar(255)', 'label'=>'HarvestName', 'enabled'=>1, 'visible'=>1, 'position'=>5, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>1),		
+		'ref'           => array('type'=>'varchar(128)', 'label'=>'RefHarvest', 'enabled'=>1, 'visible'=>4, 'noteditable'=>0, 'default'=>'(PROV)', 'notnull'=> 1, 'showoncombobox'=>1, 'index'=>1, 'position'=>10, 'searchall'=>1, 'comment'=>'Reference of object', 'validate'=>1),
 		'tracecode'     => array('type'=>'varchar(128)', 'label'=>'TraceCode', 'enabled'=>1, 'notnull'=> 1,'visible'=>1, 'noteditable'=>1, 'default'=>'', 'notnull'=> 1, 'showoncombobox'=>1, 'index'=>1, 'position'=>15, 'searchall'=>1, 'comment'=>'Reference of object', 'validate'=>1,'help'=>'Help text for tracecode',),
 		'fk_farm' 		=> array('type'=>'integer:Societe:societe/class/societe.class.php', 'label'=>'Farm', 'picto'=>'user', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>20, 'foreignkey'=>'societe.rowid'),
 		'fk_cropplan' 	=> array('type'=>'integer:Cropplans:dolitrace/class/cropplans.class.php:1:t.status=1', 'label'=>'CropPlan', 'picto'=>'user', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>30, 'foreignkey'=>'dolifarm_cropplans.rowid'),
 		'date'			=> array('type'=>'datetime', 'label'=>'DateCreation', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>40),
-        'label'         => array('type'=>'varchar(255)', 'label'=>'HarvestName', 'enabled'=>1, 'visible'=>1, 'position'=>50, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'Help text', 'showoncombobox'=>2, 'validate'=>1),
 		'yield'         => array('type'=>'real', 'label'=>'Yield', 'enabled'=>1, 'visible'=>1, 'noteditable'=>0,'notnull'=> 1,  'position'=>60, 'searchall'=>0, 'isameasure'=>1, 'help'=>'Help text for quantity', 'css'=>'maxwidth75imp', 'validate'=>1),
 		'def_yieldunit' => array('type'=>'integer:Unitdef:dolifarm/class/unitdef.class.php', 'label'=>'YieldUnit', 'picto'=>'yieldunit', 'enabled'=>1, 'visible'=>-2, 'position'=>70, 'notnull'=>-1, 'index'=>1, 'validate'=>1, 'css'=>'maxwidth500 widthcentpercentminusxx'),
         'quantity'      => array('type'=>'real', 'label'=>'QuantityBoxes', 'enabled'=>1, 'visible'=>1, 'noteditable'=>0, 'notnull'=> 0,  'position'=>80, 'searchall'=>0, 'isameasure'=>1, 'help'=>'Help text for quantity', 'css'=>'maxwidth75imp', 'validate'=>1),
@@ -1153,6 +1153,7 @@ class Harvests extends CommonObject
 
 		return $error;
 	}
+
 }
 
 
