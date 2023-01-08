@@ -4,7 +4,7 @@
  * Copyright (C) 2005-2009  Regis Houssin               <regis.houssin@inodbox.com>
  * Copyright (C) 2008       Raphael Bertrand (Resultic) <raphael.bertrand@resultic.fr>
  * Copyright (C) 2019       Frédéric France             <frederic.france@netlogic.fr>
- * Copyright (C) 2022 	Luigi Grillo - luigi.grillo@gmail.com (http://luigigrillo.com)
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or
@@ -21,18 +21,18 @@
  */
 
 /**
- * \file       htdocs/core/modules/mymodule/mod_myobject_advanced.php
- * \ingroup    mymodule
- * \brief      File containing class for advanced numbering model of doliTrace
+ * \file       htdocs/core/modules/dolitrace/mod_harvests_advanced.php
+ * \ingroup    Dolitrace
+ * \brief      File containing class for advanced numbering model of Harvests
  */
 
-dol_include_once('/mymodule/core/modules/mymodule/modules_myobject.php');
+dol_include_once('/custom/dolitrace/core/modules/dolitrace/modules_harvests.php');
 
 
 /**
  *	Class to manage customer Bom numbering rules advanced
  */
-class mod_myobject_advanced extends ModeleNumRefMyObject
+class mod_harvests_advanced extends ModeleNumRefMHarvests
 {
 	/**
 	 * Dolibarr version of the loaded document
@@ -68,18 +68,18 @@ class mod_myobject_advanced extends ModeleNumRefMyObject
 		$texte .= '<form action="'.$_SERVER["PHP_SELF"].'" method="POST">';
 		$texte .= '<input type="hidden" name="token" value="'.newToken().'">';
 		$texte .= '<input type="hidden" name="action" value="updateMask">';
-		$texte .= '<input type="hidden" name="maskconst" value="MYMODULE_MYOBJECT_ADVANCED_MASK">';
+		$texte .= '<input type="hidden" name="maskconst" value="DOLITRACE_HARVESTS_ADVANCED_MASK">';
 		$texte .= '<table class="nobordernopadding centpercent">';
 
-		$tooltip = $langs->trans("GenericMaskCodes", $langs->transnoentities("MyObject"), $langs->transnoentities("MyObject"));
+		$tooltip = $langs->trans("GenericMaskCodes", $langs->transnoentities("Harvests"), $langs->transnoentities("Harvests"));
 		$tooltip .= $langs->trans("GenericMaskCodes2");
 		$tooltip .= $langs->trans("GenericMaskCodes3");
-		$tooltip .= $langs->trans("GenericMaskCodes4a", $langs->transnoentities("MyObject"), $langs->transnoentities("MyObject"));
+		$tooltip .= $langs->trans("GenericMaskCodes4a", $langs->transnoentities("Harvests"), $langs->transnoentities("Harvests"));
 		$tooltip .= $langs->trans("GenericMaskCodes5");
 
 		// Parametrage du prefix
 		$texte .= '<tr><td>'.$langs->trans("Mask").':</td>';
-		$texte .= '<td class="right">'.$form->textwithpicto('<input type="text" class="flat minwidth175" name="maskvalue" value="'.$conf->global->MYMODULE_MYOBJECT_ADVANCED_MASK.'">', $tooltip, 1, 1).'</td>';
+		$texte .= '<td class="right">'.$form->textwithpicto('<input type="text" class="flat minwidth175" name="maskvalue" value="'.$conf->global->DOLITRACE_HARVESTS_ADVANCED_MASK.'">', $tooltip, 1, 1).'</td>';
 		$texte .= '<td class="left" rowspan="2">&nbsp; <input type="submit" class="button button-edit" value="'.$langs->trans("Modify").'" name="Button"></td>';
 		$texte .= '</tr>';
 
@@ -98,7 +98,7 @@ class mod_myobject_advanced extends ModeleNumRefMyObject
 	{
 		global $conf, $db, $langs, $mysoc;
 
-		$object = new MyObject($db);
+		$object = new Harvests($db);
 		$object->initAsSpecimen();
 
 		/*$old_code_client = $mysoc->code_client;
@@ -130,7 +130,7 @@ class mod_myobject_advanced extends ModeleNumRefMyObject
 		require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
 
 		// We get cursor rule
-		$mask = $conf->global->MYMODULE_MYOBJECT_ADVANCED_MASK;
+		$mask = $conf->global->DOLITRACE_HARVESTS_ADVANCED_MASK;
 
 		if (!$mask) {
 			$this->error = 'NotConfigured';
@@ -139,7 +139,7 @@ class mod_myobject_advanced extends ModeleNumRefMyObject
 
 		$date = $object->date;
 
-		$numFinal = get_next_value($db, $mask, 'mymodule_myobject', 'ref', '', null, $date);
+		$numFinal = get_next_value($db, $mask, 'dolitrace_harvests', 'ref', '', null, $date);
 
 		return  $numFinal;
 	}

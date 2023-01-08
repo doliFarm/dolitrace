@@ -6,7 +6,6 @@
  * Copyright (C) 2006      Andre Cianfarani     <acianfa@free.fr>
  * Copyright (C) 2012      Juanjo Menent	    <jmenent@2byte.es>
  * Copyright (C) 2014      Marcos García        <marcosgdf@gmail.com>
- * Copyright (C) 2022 		Luigi Grillo - luigi.grillo@gmail.com (http://luigigrillo.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +25,7 @@
 /**
  *  \file			htdocs/core/modules/dolitrace/modules_harvests.php
  *  \ingroup		dolitrace
- *  \brief			File that contains parent class for harvests document models and parent class for harvests numbering models
+ *  \brief			File that contains parent class for harvests document models and parent class for myobjects numbering models
  */
 
 require_once DOL_DOCUMENT_ROOT.'/core/class/commondocgenerator.class.php';
@@ -65,7 +64,7 @@ abstract class ModelePDFHarvests extends CommonDocGenerator
 
 
 /**
- *  Parent class to manage numbering of Harvests
+ *  Parent class to manage numbering of MyObject
  */
 abstract class ModeleNumRefHarvests
 {

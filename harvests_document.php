@@ -248,7 +248,6 @@ if ($object->id) {
 	$permtoedit = 1;
 	$param = '&id='.$object->id;
 
-	//$relativepathwithnofile='harvests/' . dol_sanitizeFileName($object->id).'/';
 	$relativepathwithnofile = 'harvests/'.dol_sanitizeFileName($object->ref).'/';
 
 	include DOL_DOCUMENT_ROOT.'/core/tpl/document_actions_post_headers.tpl.php';

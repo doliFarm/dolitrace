@@ -926,13 +926,13 @@ class modDoliTrace extends DolibarrModules
 
 		$myTmpObjects = array();
 
-		$myTmpObjects['MyObject'] = array('includerefgeneration'=>0, 'includedocgeneration'=>0);
+		$myTmpObjects['harvests'] = array('includerefgeneration'=>1, 'includedocgeneration'=>1);
 
 
 
 		foreach ($myTmpObjects as $myTmpObjectKey => $myTmpObjectArray) {
 
-			if ($myTmpObjectKey == 'MyObject') {
+			if ($myTmpObjectKey == 'harvestsAAAA') {
 
 				continue;
 
@@ -940,11 +940,11 @@ class modDoliTrace extends DolibarrModules
 
 			if ($myTmpObjectArray['includerefgeneration']) {
 
-				$src = DOL_DOCUMENT_ROOT.'/install/doctemplates/'.$moduledir.'/template_myobjects.odt';
+				$src = DOL_DOCUMENT_ROOT.'/install/doctemplates/'.$moduledir.'/template_harvests.odt';
 
 				$dirodt = DOL_DATA_ROOT.'/doctemplates/'.$moduledir;
 
-				$dest = $dirodt.'/template_myobjects.odt';
+				$dest = $dirodt.'/template_harvests.odt';
 
 
 
@@ -974,11 +974,11 @@ class modDoliTrace extends DolibarrModules
 
 					"DELETE FROM ".MAIN_DB_PREFIX."document_model WHERE nom = 'standard_".strtolower($myTmpObjectKey)."' AND type = '".$this->db->escape(strtolower($myTmpObjectKey))."' AND entity = ".((int) $conf->entity),
 
-					"INSERT INTO ".MAIN_DB_PREFIX."document_model (nom, type, entity) VALUES('standard_".strtolower($myTmpObjectKey)."', '".$this->db->escape(strtolower($myTmpObjectKey))."', ".((int) $conf->entity).")",
+					"INSERT INTO ".MAIN_DB_PREFIX."document_model (nom, type, entity) VALUES('standard_".strtolower($myTmpObjectKey)."', '".$this->db->escape(strtolower($myTmpObjectKey))."', ".((int) $conf->entity).")"
 
-					"DELETE FROM ".MAIN_DB_PREFIX."document_model WHERE nom = 'generic_".strtolower($myTmpObjectKey)."_odt' AND type = '".$this->db->escape(strtolower($myTmpObjectKey))."' AND entity = ".((int) $conf->entity),
+					// "DELETE FROM ".MAIN_DB_PREFIX."document_model WHERE nom = 'generic_".strtolower($myTmpObjectKey)."_odt' AND type = '".$this->db->escape(strtolower($myTmpObjectKey))."' AND entity = ".((int) $conf->entity),
 
-					"INSERT INTO ".MAIN_DB_PREFIX."document_model (nom, type, entity) VALUES('generic_".strtolower($myTmpObjectKey)."_odt', '".$this->db->escape(strtolower($myTmpObjectKey))."', ".((int) $conf->entity).")"
+					// "INSERT INTO ".MAIN_DB_PREFIX."document_model (nom, type, entity) VALUES('generic_".strtolower($myTmpObjectKey)."_odt', '".$this->db->escape(strtolower($myTmpObjectKey))."', ".((int) $conf->entity).")"
 
 				));
 

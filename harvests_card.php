@@ -558,7 +558,7 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 
 	print '</table>';
 	
-	// QR COde TODO MIAO
+	// QR COde TODO: Improve the QR code generation (I do not like here to use Google)
 	print '<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=1673031731&choe=UTF-8" title="Link to Google.com" />';
 
 	print '</div>';
@@ -696,14 +696,11 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 			$objref = dol_sanitizeFileName($object->ref);
 			$relativepath = $objref.'/'.$objref.'.pdf'; 
 			$filedir = $conf->dolitrace->dir_output.'/'.$object->element.'/'.$objref;
-			$filedir = DOL_DOCUMENT_ROOT.'/dolitrace/harvests/';
 			$urlsource = $_SERVER["PHP_SELF"]."?id=".$object->id;
 			$genallowed = $permissiontoread; // If you can read, you can build the PDF to read content
 			$delallowed = $permissiontoadd; // If you can create/edit, you can remove a file on card
-			$genallowed =1 ;
-			// print $formfile->showdocuments('dolitrace:Harvests', $object->element.'/'.$objref, $filedir, $urlsource, $genallowed, $delallowed, $object->model_pdf, 1, 0, 0, 28, 0, '', '', '', $langs->defaultlang,'',$object);
-			print $formfile->showdocuments('dolitrace:Harvests', $objref, $filedir, $urlsource, $genallowed, $delallowed, $object->model_pdf, 1, 0, 0, 28, 0, '', '', '', $langs->defaultlang, '', $object,0);
-
+			dol_syslog(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>".$filedir.'--'.$objref.'--'.$urlsource.'--'.$genallowed.'--'.$delallowed.'--'.$object->model_pdf);
+			print $formfile->showdocuments('dolitrace:harvests', 'harvests/'.$objref, $filedir, $urlsource, $genallowed, $delallowed, $object->model_pdf, 1, 0, 0, 28, 0, '', '', '', $langs->defaultlang, '', $object,0);
 		}
 
 		// Show links to link elements

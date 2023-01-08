@@ -129,7 +129,8 @@ class Harvests extends CommonObject
 		'tms' 			=> array('type'=>'timestamp', 'label'=>'TimeStamp', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>150),
 		'author' 		=> array('type'=>'integer:User:user/class/user.class.php', 'label'=>'Author', 'picto'=>'', 'enabled'=>1,'noteditable'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>160, 'foreignkey'=>'user.rowid'),
 		'fk_product' 	=> array('type'=>'integer:Product:product/class/product.class.php', 'label'=>'Product', 'picto'=>'product', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>170, 'foreignkey'=>'product.rowid'),
-		'fk_ordersupplier' 	=> array('type'=>'integer:CommandeFournisseur:fourn/class/fournisseur.commande.class.php', 'label'=>'Product', 'picto'=>'product', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>170, 'foreignkey'=>'product.rowid')
+		'fk_ordersupplier' 	=> array('type'=>'integer:CommandeFournisseur:fourn/class/fournisseur.commande.class.php', 'label'=>'Product', 'picto'=>'product', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>170, 'foreignkey'=>'product.rowid'),
+		 'model_pdf'     => array('type'=>'varchar(128)', 'label'=>'ModelPDF', 'enabled'=>0, 'notnull'=> 1,'visible'=>0, 'noteditable'=>1, 'default'=>'', 'notnull'=> 1, 'showoncombobox'=>1, 'index'=>0, 'position'=>180, 'searchall'=>1, 'comment'=>'model pdf', 'validate'=>1,'help'=>'Help')
 	);
 	
 
@@ -1101,7 +1102,7 @@ class Harvests extends CommonObject
 		global $conf, $langs;
 
 		$result = 0;
-		$includedocgeneration = 0;
+		$includedocgeneration = 1;
 
 		$langs->load("dolitrace@dolitrace");
 

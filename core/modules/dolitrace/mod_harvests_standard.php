@@ -1,8 +1,7 @@
 <?php
 /* Copyright (C) 2005-2010 Laurent Destailleur  <eldy@users.sourceforge.net>
  * Copyright (C) 2005-2009 Regis Houssin        <regis.houssin@inodbox.com>
- * Copyright (C) 2022 	Luigi Grillo - luigi.grillo@gmail.com (http://luigigrillo.com)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or
@@ -20,10 +19,10 @@
 
 /**
  *  \file       htdocs/core/modules/dolitrace/mod_harvests_standard.php
- *  \ingroup    dolitrace
- *  \brief      File of class to manage Harvests numbering rules standard
+ *  \ingroup    mymodule
+ *  \brief      File of class to manage Dolitrace numbering rules standard
  */
-dol_include_once('/dolitrace/core/modules/dolitrace/modules_harvests.php');
+dol_include_once('/custom/dolitrace/core/modules/dolitrace/modules_harvests.php');
 
 
 /**
@@ -37,7 +36,7 @@ class mod_harvests_standard extends ModeleNumRefHarvests
 	 */
 	public $version = 'dolibarr'; // 'development', 'experimental', 'dolibarr'
 
-	public $prefix = 'H';
+	public $prefix = 'HARVESTS';
 
 	/**
 	 * @var string Error code (or message)
@@ -88,7 +87,7 @@ class mod_harvests_standard extends ModeleNumRefHarvests
 
 		$posindice = strlen($this->prefix) + 6;
 		$sql = "SELECT MAX(CAST(SUBSTRING(ref FROM ".$posindice.") AS SIGNED)) as max";
-		$sql .= " FROM ".MAIN_DB_PREFIX."dolifarm_harvests";
+		$sql .= " FROM ".MAIN_DB_PREFIX."dolitrace_harvests";
 		$sql .= " WHERE ref LIKE '".$db->escape($this->prefix)."____-%'";
 		if ($object->ismultientitymanaged == 1) {
 			$sql .= " AND entity = ".$conf->entity;
@@ -125,7 +124,7 @@ class mod_harvests_standard extends ModeleNumRefHarvests
 		// first we get the max value
 		$posindice = strlen($this->prefix) + 6;
 		$sql = "SELECT MAX(CAST(SUBSTRING(ref FROM ".$posindice.") AS SIGNED)) as max";
-		$sql .= " FROM ".MAIN_DB_PREFIX."dolifarm_harvests";
+		$sql .= " FROM ".MAIN_DB_PREFIX."dolitrace_harvests";
 		$sql .= " WHERE ref LIKE '".$db->escape($this->prefix)."____-%'";
 		if ($object->ismultientitymanaged == 1) {
 			$sql .= " AND entity = ".$conf->entity;
