@@ -18,17 +18,17 @@
  */
 
 /**
- *  \file       htdocs/core/modules/dolitrace/mod_harvests_standard.php
- *  \ingroup    mymodule
- *  \brief      File of class to manage Dolitrace numbering rules standard
+ *  \file       htdocs/core/modules/dolitrace/mod_cropplans_standard.php
+ *  \ingroup    dolitrace
+ *  \brief      File of class to manage cropplans numbering rules standard
  */
-dol_include_once('/custom/dolitrace/core/modules/dolitrace/modules_harvests.php');
+dol_include_once('/dolitrace/core/modules/dolitrace/modules_cropplans.php');
 
 
 /**
  *	Class to manage customer order numbering rules standard
  */
-class mod_harvests_standard extends ModeleNumRefHarvests
+class mod_cropplans_standard extends ModeleNumRefCropplans
 {
 	/**
 	 * Dolibarr version of the loaded document
@@ -36,7 +36,7 @@ class mod_harvests_standard extends ModeleNumRefHarvests
 	 */
 	public $version = 'dolibarr'; // 'development', 'experimental', 'dolibarr'
 
-	public $prefix = 'HARVESTS';
+	public $prefix = 'CROPPLANS';
 
 	/**
 	 * @var string Error code (or message)
@@ -87,7 +87,7 @@ class mod_harvests_standard extends ModeleNumRefHarvests
 
 		$posindice = strlen($this->prefix) + 6;
 		$sql = "SELECT MAX(CAST(SUBSTRING(ref FROM ".$posindice.") AS SIGNED)) as max";
-		$sql .= " FROM ".MAIN_DB_PREFIX."dolitrace_harvests";
+		$sql .= " FROM ".MAIN_DB_PREFIX."dolifarm_cropplans";
 		$sql .= " WHERE ref LIKE '".$db->escape($this->prefix)."____-%'";
 		if ($object->ismultientitymanaged == 1) {
 			$sql .= " AND entity = ".$conf->entity;
@@ -124,15 +124,14 @@ class mod_harvests_standard extends ModeleNumRefHarvests
 		// first we get the max value
 		$posindice = strlen($this->prefix) + 6;
 		$sql = "SELECT MAX(CAST(SUBSTRING(ref FROM ".$posindice.") AS SIGNED)) as max";
-		$sql .= " FROM ".MAIN_DB_PREFIX."dolifarm_harvests";
+		$sql .= " FROM ".MAIN_DB_PREFIX."dolifarm_cropplans";
 		$sql .= " WHERE ref LIKE '".$db->escape($this->prefix)."____-%'";
 		if ($object->ismultientitymanaged == 1) {
 			$sql .= " AND entity = ".$conf->entity;
 		} elseif ($object->ismultientitymanaged == 2) {
 			// TODO
 		}
-
-		$resql = $db->query($sql);
+       	$resql = $db->query($sql);
 		if ($resql) {
 			$obj = $db->fetch_object($resql);
 			if ($obj) {
@@ -141,7 +140,7 @@ class mod_harvests_standard extends ModeleNumRefHarvests
 				$max = 0;
 			}
 		} else {
-			dol_syslog("mod_harvests_standard::getNextValue", LOG_DEBUG);
+			dol_syslog("mod_cropplans_standard::getNextValue", LOG_DEBUG);
 			return -1;
 		}
 
@@ -155,7 +154,7 @@ class mod_harvests_standard extends ModeleNumRefHarvests
 			$num = sprintf("%04s", $max + 1);
 		}
 
-		dol_syslog("mod_harvests_standard::getNextValue return ".$this->prefix.$yymm."-".$num);
+		dol_syslog("mod_cropplans_standard::getNextValue return ".$this->prefix.$yymm."-".$num);
 		return $this->prefix.$yymm."-".$num;
 	}
 }

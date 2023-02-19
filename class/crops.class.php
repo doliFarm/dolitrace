@@ -24,6 +24,7 @@
 
 // Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
+require_once DOL_DOCUMENT_ROOT.'/custom/dolitrace/core/modules/dolitrace/mod_crops_standard.php';
 //require_once DOL_DOCUMENT_ROOT . '/societe/class/societe.class.php';
 //require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
 
@@ -120,6 +121,7 @@ class crops extends CommonObject
 		'status'       => array('type'=>'integer', 'label'=>'Status', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'default'=>0, 'index'=>1, 'position'=>130, 'arrayofkeyval'=>array(0=>'Draft', 1=>'Validated', 9=>'Canceled'), 'validate'=>1),
 		'tms' 		   => array('type'=>'timestamp', 'label'=>'TimeStamp', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>140),
 		'author' 	   => array('type'=>'integer:User:user/class/user.class.php', 'label'=>'Author', 'picto'=>'user', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>150, 'foreignkey'=>'user.rowid'),
+	    'model_pdf'     => array('type'=>'varchar(128)', 'label'=>'ModelPDF', 'enabled'=>0, 'notnull'=> 1,'visible'=>0, 'noteditable'=>1, 'default'=>'', 'notnull'=> 1, 'showoncombobox'=>1, 'index'=>0, 'position'=>180, 'searchall'=>1, 'comment'=>'model pdf', 'validate'=>1,'help'=>'Help')
 	);
 
 	/**

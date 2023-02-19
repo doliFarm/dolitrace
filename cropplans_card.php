@@ -266,7 +266,6 @@ llxHeader('', $title, $help_url);
 // });
 // </script>';
 
-
 // Part to create
 if ($action == 'create') {
 	if (empty($permissiontoadd)) {

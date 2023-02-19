@@ -151,6 +151,7 @@ CertificateExpirationDate=Scadenza certificato
 Agronomist=Agronomo
 EndDate=Fine
 EndDate=Inizio
+DateHarvest=Data Raccolta
 OrganicStatus=Stato BIO
 Certified=Certificato
 Conventional=Convenzionale

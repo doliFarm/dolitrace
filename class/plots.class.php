@@ -24,6 +24,7 @@
 
 // Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
+require_once DOL_DOCUMENT_ROOT.'/custom/dolitrace/core/modules/dolitrace/mod_plots_standard.php';
 //require_once DOL_DOCUMENT_ROOT . '/societe/class/societe.class.php';
 //require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
 
@@ -103,20 +104,21 @@ class Plots extends CommonObject
 	 */
 	public $fields = array(
 		'rowid'         => array('type'=>'integer', 'label'=>'TechnicalID', 'enabled'=>1, 'visible'=>-2, 'noteditable'=>1, 'notnull'=> 1, 'index'=>1, 'position'=>1, 'comment'=>'Id', 'css'=>'left'),
-		'ref'           => array('type'=>'varchar(128)', 'label'=>'RefPlot', 'enabled'=>1, 'visible'=>4, 'noteditable'=>0, 'default'=>'(PROV)', 'notnull'=> 1, 'showoncombobox'=>1, 'position'=>10, 'searchall'=>1, 'comment'=>'Reference of object', 'validate'=>1),
-		'label'         => array('type'=>'varchar(255)', 'label'=>'PlotName', 'enabled'=>1, 'visible'=>1, 'position'=>20, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'HelpPlotLabel', 'showoncombobox'=>2, 'validate'=>0),
+		'ref'           => array('type'=>'varchar(128)', 'label'=>'RefPlot', 'enabled'=>1, 'visible'=>2, 'noteditable'=>0, 'default'=>'(PROV)', 'notnull'=> 1, 'showoncombobox'=>1, 'position'=>10, 'searchall'=>1, 'comment'=>'Reference of object', 'validate'=>1),
+		'label'         => array('type'=>'varchar(255)', 'label'=>'PlotName', 'enabled'=>1, 'visible'=>1, 'position'=>20, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'HelpPlotLabel', 'showoncombobox'=>2, 'validate'=>1),
 		'fk_farm' 		=> array('type'=>'integer:Societe:societe/class/societe.class.php', 'label'=>'Farm', 'picto'=>'user', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>30, 'foreignkey'=>'societe.rowid'),
-		'mapreference'  => array('type'=>'varchar(255)', 'label'=>'MapReference', 'enabled'=>1, 'visible'=>1, 'position'=>50, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'HelpMapReference', 'showoncombobox'=>2, 'validate'=>0),
-		'size'         => array('type'=>'real', 'label'=>'PlotSize', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'default'=>'', 'position'=>60, 'searchall'=>0, 'isameasure'=>1, 'help'=>'HelpSize', 'css'=>'maxwidth75imp', 'validate'=>0),
+		'mapreference'  => array('type'=>'varchar(255)', 'label'=>'MapReference', 'enabled'=>1, 'visible'=>1, 'position'=>50, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'HelpMapReference', 'showoncombobox'=>2, 'validate'=>1),
+		'size'         => array('type'=>'real', 'label'=>'PlotSize', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'default'=>'', 'position'=>60, 'searchall'=>0, 'isameasure'=>1, 'help'=>'HelpSize', 'css'=>'maxwidth75imp', 'validate'=>1),
 		'def_sizeunit'   => array('type'=>'integer:Unitdef:dolifarm/class/unitdef.class.php', 'label'=>'SizeUnit', 'default'=>'0', 'picto'=>'', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>70, 'foreignkey'=>'user.rowid'),
 		'def_organicstatus'  => array('type'=>'sellist:dolifarm_dictionary:label:rowid:module:(active = 1) and (code = \'DF_PLSTAT\'):label', 'label'=>'OrganicStatus', 'notnull'=> 1,'enabled'=>1, 'visible'=>1, 'position'=>80, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'HelpCertStatus', 'showoncombobox'=>2, 'validate'=>0),
 		'conversionstart' => array('type'=>'datetime', 'label'=>'ConversionStart', 'enabled'=>1, 'visible'=>1, 'position'=>90),
 		'conversionfinish' => array('type'=>'datetime', 'label'=>'ConversionEnd', 'enabled'=>1, 'visible'=>1,  'position'=>100),
 		'note_public'   => array('type'=>'html', 'label'=>'NotePublic', 'enabled'=>1, 'visible'=>3, 'position'=>110, 'validate'=>1, 'cssview'=>'wordbreak'),
 		'note_private'  => array('type'=>'html', 'label'=>'NotePrivate', 'enabled'=>1, 'visible'=>3, 'position'=>115, 'validate'=>1, 'cssview'=>'wordbreak'),
-		'status'        => array('type'=>'integer', 'label'=>'Status', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'default'=>0, 'position'=>120, 'arrayofkeyval'=>array(0=>'Draft', 1=>'Validated', 9=>'Canceled'), 'validate'=>0),
+		'status'        => array('type'=>'integer', 'label'=>'Status', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'default'=>0, 'position'=>120, 'arrayofkeyval'=>array(0=>'Draft', 1=>'Validated', 9=>'Canceled'), 'validate'=>1),
 		'tms' 			=> array('type'=>'timestamp', 'label'=>'TimeStamp', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>130),
 		'author' 		=> array('type'=>'integer:User:user/class/user.class.php', 'label'=>'Author', 'picto'=>'', 'enabled'=>1,'noteditable'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>140, 'foreignkey'=>'user.rowid'),
+	    'model_pdf'     => array('type'=>'varchar(128)', 'label'=>'ModelPDF', 'enabled'=>0, 'notnull'=> 1,'visible'=>0, 'noteditable'=>1, 'default'=>'', 'notnull'=> 1, 'showoncombobox'=>1, 'index'=>0, 'position'=>180, 'searchall'=>1, 'comment'=>'model pdf', 'validate'=>1,'help'=>'Help')
 	);
 
 	/**
@@ -578,7 +580,6 @@ class Plots extends CommonObject
 			dol_syslog(get_class($this)."::validate action abandonned: already validated", LOG_WARNING);
 			return 0;
 		}
-
 		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->dolitrace->plots->write))
 		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->dolitrace->plots->plots_advance->validate))))
 		 {
@@ -598,7 +599,7 @@ class Plots extends CommonObject
 			$num = $this->ref;
 		}
 		$this->newref = $num;
-
+		dol_syslog(">>>>>>>>>>>>>> validate $num",LOG_DEBUG);
 		if (!empty($num)) {
 			// Validate
 			$sql = "UPDATE ".MAIN_DB_PREFIX.$this->table_element;
@@ -1016,16 +1017,17 @@ class Plots extends CommonObject
 	{
 		global $langs, $conf;
 		$langs->load("dolitrace@dolitrace");
+        dol_syslog("------------------getNextNumRef-----------------------_____> ",LOG_DEBUG);
 
-		if (empty($conf->global->DOLITRACE_MYOBJECT_ADDON)) {
-			$conf->global->DOLITRACE_MYOBJECT_ADDON = 'mod_plots_standard';
+		if (empty($conf->global->DOLITRACE_PLOTS_ADDON)) {
+			$conf->global->DOLITRACE_PLOTS_ADDON = 'mod_plots_standard';
 		}
 
-		if (!empty($conf->global->DOLITRACE_MYOBJECT_ADDON)) {
+		if (!empty($conf->global->DOLITRACE_PLOTS_ADDON)) {
 			$mybool = false;
 
-			$file = $conf->global->DOLITRACE_MYOBJECT_ADDON.".php";
-			$classname = $conf->global->DOLITRACE_MYOBJECT_ADDON;
+			$file = $conf->global->DOLITRACE_PLOTS_ADDON.".php";
+			$classname = $conf->global->DOLITRACE_PLOTS_ADDON;
 
 			// Include file with class
 			$dirmodels = array_merge(array('/'), (array) $conf->modules_parts['models']);
@@ -1040,6 +1042,7 @@ class Plots extends CommonObject
 				dol_print_error('', "Failed to include file ".$file);
 				return '';
 			}
+                   dol_syslog("------------------getNextNumRef--------CLASSE CARICATA-------_____> ",LOG_DEBUG);
 
 			if (class_exists($classname)) {
 				$obj = new $classname();

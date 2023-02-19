@@ -20,6 +20,7 @@ CREATE TABLE llx_dolifarm_harvests(
         costmanpower FLOAT,
         costenergy FLOAT,
         status INTEGER (11),
+        model_pdf VARCHAR(30),
 		tms TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
 		author VARCHAR(30)
 ) Engine=InnoDB;
