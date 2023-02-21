@@ -559,7 +559,7 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 	print '</table>';
 	
 	// QR COde TODO: Improve the QR code generation (I do not like here to use Google)
-	print '<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=1673031731&choe=UTF-8" title="Link to Google.com" />';
+	print '<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl='.$object->tracecode.'&choe=UTF-8" title="Link to Google.com" />';
 
 	print '</div>';
 	print '</div>';

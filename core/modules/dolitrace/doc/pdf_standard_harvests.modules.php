@@ -331,14 +331,17 @@ class pdf_standard_harvests extends ModelePDFHarvests
 				$tab_top += 10;
 				$url = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl='.$object->tracecode.'&choe=UTF-8';
 				$img = $dir.'/'.$object->ref.'.png';
-				file_put_contents($img, file_get_contents($url));
-				
-				$height = pdf_getHeightForLogo($img);
-				$pdf->Image($img, $this->posxdesc - 1, $tab_top, 0, $height); // width=0 (auto)
-				if (file_exists($img) )
+				$img = file_get_contents($url);
+				// file_put_contents($img, file_get_contents($url) );   // TODO qualcosa va storto qui
+			 	$height = pdf_getHeightForLogo($img);
+				// $height = 100;
+				$pdf->Image('@'.$img , $this->posxdesc - 1, $tab_top, 0, $height); // width=0 (auto)
+				/*   // TODO qualcosa va storto qui
+				if (file_exists($img) )    
 				{
 					unlink($img);
 				}
+				*/
 				$pdf->Close();
 				$pdf->Output($file, 'F');
 
