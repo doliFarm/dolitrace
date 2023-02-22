@@ -329,19 +329,22 @@ class pdf_standard_harvests extends ModelePDFHarvests
 
 				$pdf->writeHTMLCell(190, 3, $this->posxdesc - 1, $tab_top, dol_htmlentitiesbr("this is just a test of tracecode label. Try to scan this QR code"), 0, 1);
 				$tab_top += 10;
-				$url = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl='.$object->tracecode.'&choe=UTF-8';
-				$img = $dir.'/'.$object->ref.'.png';
-				$img = file_get_contents($url);
-				// file_put_contents($img, file_get_contents($url) );   // TODO qualcosa va storto qui
-			 	$height = pdf_getHeightForLogo($img);
-				// $height = 100;
-				$pdf->Image('@'.$img , $this->posxdesc - 1, $tab_top, 0, $height); // width=0 (auto)
-				/*   // TODO qualcosa va storto qui
-				if (file_exists($img) )    
-				{
-					unlink($img);
-				}
-				*/
+				
+				// set style for barcode
+				$style = array(
+					'border' => 2,
+					'vpadding' => 'auto',
+					'hpadding' => 'auto',
+					'fgcolor' => array(0,0,0),
+					'bgcolor' => false, //array(255,255,255)
+					'module_width' => 1, // width of a single module in points
+					'module_height' => 1 // height of a single module in points
+				);
+
+				// QRCODE,L : QR-CODE Low error correction
+				$pdf->write2DBarcode($object->tracecode, 'QRCODE,L', 20, 30, 50, 50, $style, 'N');
+				$pdf->Text(20, 25, 'Codice Tracciabilità Raccolta Ref.: '.$object->ref);
+				
 				$pdf->Close();
 				$pdf->Output($file, 'F');
 

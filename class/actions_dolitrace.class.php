@@ -403,10 +403,15 @@ class ActionsDoliTrace
 		}
 		// HARVESTS CARD CONTEXT
 		if (in_array($parameters['currentcontext'], array('harvestscard')) && ($object->status == Harvests::STATUS_VALIDATED) ) {
-			 print dolGetButtonAction($langs->trans('PrintLabelHarvest'), '', 'default', $_SERVER["PHP_SELF"].'?id='.$object->id.'&action=printlabel');
-			 print dolGetButtonAction($langs->trans('OrderSupplier'), '', 'default', $_SERVER["PHP_SELF"].'?id='.$object->id.'&action=order_supplier');
- 			 print dolGetButtonAction($langs->trans('OnStock'), '', 'default', $_SERVER["PHP_SELF"].'?id='.$object->id.'&action=on_stock');
- 			 print dolGetButtonAction($langs->trans('ManifacturingOrder'), '', 'default', $_SERVER["PHP_SELF"].'?id='.$object->id.'&action=manifacturing_order');
+			 // print dolGetButtonAction($langs->trans('PrintLabelHarvest'), '', 'default', $_SERVER["PHP_SELF"].'?id='.$object->id.'&action=printlabel');
+			 	
+			 	print dolGetButtonAction($langs->trans('OrderSupplier'), '', 'default', '','',1,array("attr"=>array("class"=>"butActionRefused classfortooltip", "title"=>$langs->trans('OrderSupplier'))));		    
+				print dolGetButtonAction($langs->trans('OnStock'), '', 'default', '','',1,array("attr"=>array("class"=>"butActionRefused classfortooltip", "title"=>$langs->trans('OnStock'))));		    
+				print dolGetButtonAction($langs->trans('ManifacturingOrder'), '', 'default', '','',1,array("attr"=>array("class"=>"butActionRefused classfortooltip", "title"=>$langs->trans('ManifacturingOrder'))));		    
+			
+			// print dolGetButtonAction($langs->trans('OrderSupplier'), '', 'default', $_SERVER["PHP_SELF"].'?id='.$object->id.'&action=order_supplier');
+ 			 // print dolGetButtonAction($langs->trans('OnStock'), '', 'default', $_SERVER["PHP_SELF"].'?id='.$object->id.'&action=on_stock');
+ 			// print dolGetButtonAction($langs->trans('ManifacturingOrder'), '', 'default', $_SERVER["PHP_SELF"].'?id='.$object->id.'&action=manifacturing_order');
 		}
 		// PLOT CARD CONTEXT
 		if (in_array($parameters['currentcontext'], array('plotscard'))) {

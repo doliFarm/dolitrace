@@ -185,3 +185,6 @@ HelpMapReference=Inserisci un riferimento geografico (GPS, indirizzo, etc)
 HelpSize=Inserisci la dimensione dell'appezzamento
 HelpCertStatus=Indicare lo stato dell'appezzamento in funzione della certificazione Bio 
 
+
+ErrorProductionNull=Errore: non è possibile convalidare una produzione nulla
+

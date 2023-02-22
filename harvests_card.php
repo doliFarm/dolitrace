@@ -101,6 +101,7 @@ $lineid   = GETPOST('lineid', 'int');
 $fk_farm  = GETPOST('fk_farm', 'int');
 $fk_cropplan  = GETPOST('fk_cropplan', 'int');
 $tracecode = GETPOST('tracecode', 'alpha');
+$label = GETPOST('label', 'alpha');
 
 // Initialize technical objects
 $object = new Harvests($db);
@@ -109,7 +110,7 @@ $diroutputmassaction = $conf->dolitrace->dir_output.'/temp/massgeneration/'.$use
 $hookmanager->initHooks(array('harvestscard', 'globalcard')); // Note that conf->hooks_modules contains array
 
 // Fields Configuration LG 28.05.2022
-if (!empty($fk_farm) ) {
+if (!empty($fk_farm) && !empty($backtopage) ) {
 	$object->fields['fk_farm']['noteditable']=1;
 }
 if (!empty($fk_cropplan)) {
@@ -364,6 +365,9 @@ if ($action == 'create') {
 	}
 	if ($backtopageforcancel) {
 		print '<input type="hidden" name="backtopageforcancel" value="'.$backtopageforcancel.'">';
+	}
+	if ($label) {
+		print '<input type="hidden" name="label" value="'.$label.'">';
 	}
 	print dol_get_fiche_head(array(), '');
 
@@ -738,8 +742,8 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 
 echo "<script>
 			$('#fk_farm').change(function() {
-					// alert($(this).val()) 
-					window.location.replace(window.location.href + \"&fk_farm=\"+$(this).val()+\"&new=true\")
+					//alert(document.getElementById(\"label\").value) 
+					window.location.replace(window.location.href + \"&fk_farm=\"+$(this).val()+\"&new=true\"+\"&label=\"+document.getElementById(\"label\").value)
 				});
 		</script>";
 
