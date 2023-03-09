@@ -37,9 +37,10 @@ function cropplansPrepareHead($object)
 	$h = 0;
 	$head = array();
 
-	$head[$h][0] = dol_buildpath("/dolitrace/croplans_card.php", 1).'?id='.$object->id;
+	$head[$h][0] = dol_buildpath("/custom/dolitrace/cropplans_card.php", 1).'?id='.$object->id;
 	$head[$h][1] = $langs->trans("CropPlan");
 	$head[$h][2] = 'card';
+	return $head; // For the moment we do not manage the others tab 26-02-2023
 	$h++;
 
 	if (isset($object->fields['note_public']) || isset($object->fields['note_private'])) {
@@ -50,7 +51,7 @@ function cropplansPrepareHead($object)
 		if (!empty($object->note_public)) {
 			$nbNote++;
 		}
-		$head[$h][0] = dol_buildpath('/dolitrace/cropplans_note.php', 1).'?id='.$object->id;
+		$head[$h][0] = dol_buildpath('/custom/dolitrace/cropplans_note.php', 1).'?id='.$object->id;
 		$head[$h][1] = $langs->trans('Notes');
 		if ($nbNote > 0) {
 			$head[$h][1] .= (empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER) ? '<span class="badge marginleftonlyshort">'.$nbNote.'</span>' : '');
@@ -64,7 +65,7 @@ function cropplansPrepareHead($object)
 	$upload_dir = $conf->dolitrace->dir_output."/cropplans/".dol_sanitizeFileName($object->ref);
 	$nbFiles = count(dol_dir_list($upload_dir, 'files', 0, '', '(\.meta|_preview.*\.png)$'));
 	$nbLinks = Link::count($db, $object->element, $object->id);
-	$head[$h][0] = dol_buildpath("/dolitrace/cropplans_document.php", 1).'?id='.$object->id;
+	$head[$h][0] = dol_buildpath("/custom/dolitrace/cropplans_document.php", 1).'?id='.$object->id;
 	$head[$h][1] = $langs->trans('Documents');
 	if (($nbFiles + $nbLinks) > 0) {
 		$head[$h][1] .= '<span class="badge marginleftonlyshort">'.($nbFiles + $nbLinks).'</span>';

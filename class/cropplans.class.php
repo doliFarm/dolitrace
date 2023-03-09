@@ -104,31 +104,32 @@ class Cropplans extends CommonObject
 	 * @var array  Array with all fields and their property. Do not use it as a static var. It may be modified by constructor.
 	 */
 	public $fields = array(
-		'rowid'         => array('type'=>'integer', 'label'=>'TechnicalID', 'enabled'=>1, 'visible'=>-2, 'noteditable'=>1, 'notnull'=> 1, 'index'=>1, 'position'=>1, 'comment'=>'Id', 'css'=>'left'),
-		'ref' =>array('type'=>'varchar(30)', 'label'=>'RefCropPlan', 'enabled'=>1, 'visible'=>4, 'notnull'=>1, 'noteditable'=>0, 'default'=>'(PROV)', 'showoncombobox'=>0, 'position'=>5, 'validate'=>1),
-		'label'         => array('type'=>'varchar(255)', 'label'=>'CropPlanName', 'enabled'=>1, 'visible'=>1, 'position'=>10, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'HelpLabelCropPlan', 'showoncombobox'=>2, 'validate'=>1),
-		'fk_farm' 		=> array('type'=>'integer:Societe:societe/class/societe.class.php', 'label'=>'Farm', 'picto'=>'user', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>15, 'foreignkey'=>'societe.rowid'),	
-		'fk_plot' 		=> array('type'=>'integer:Plots:dolitrace/class/plots.class.php', 'label'=>'Plot',     'picto'=>'',     'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>20, 'foreignkey'=>'dolifarm_plots.rowid'),
-		'fk_croptype' 	=> array('type'=>'integer:Crops:dolitrace/class/crops.class.php', 'label'=>'CropType', 'picto'=>'crop', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>30, 'foreignkey'=>'dolifarm_crops.rowid'),	
-		'fk_project'	=> array('type'=>'integer:Project:projet/class/project.class.php', 'label'=>'Project', 'picto'=>'project', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 0, 'position'=>35, 'foreignkey'=>'project.rowid'),
-		'startdate' 	=> array('type'=>'date', 'label'=>'StartDate', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>50),
-		'finishdate' 	=> array('type'=>'date', 'label'=>'FinishDate', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>60),
-		'note_public'   => array('type'=>'html', 'label'=>'NotePublic', 'enabled'=>1, 'visible'=>3, 'position'=>70, 'validate'=>1, 'cssview'=>'wordbreak'),
-		'note_private'  => array('type'=>'html', 'label'=>'NotePrivate', 'enabled'=>1, 'visible'=>3, 'position'=>75, 'validate'=>1, 'cssview'=>'wordbreak'),
-		'estimatedyield' 			=> array('type'=>'real', 'label'=>'EstimatedYield', 'enabled'=>1, 'visible'=>1,  'index'=>1, 'isameasure'=>1, 'position'=>80),
-		'def_estimatedyieldunit' 	=> array('type'=>'integer:Unitdef:dolifarm/class/unitdef.class.php', 'label'=>'YieldUnit', 'picto'=>'unitdef', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>100, 'foreignkey'=>'unitdef.rowid'),
-		'def_yieldtodateunit' 		=> array('type'=>'integer:Unitdef:dolifarm/class/unitdef.class.php', 'label'=>'YieldUnit', 'picto'=>'', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>110, 'foreignkey'=>'unitdef.rowid'),
-		'estimatedqty' 	=> array('type'=>'real', 'label'=>'EstimatedQuantityBoxes', 'enabled'=>1, 'visible'=>3, 'isameasure'=>1, 'index'=>1, 'position'=>120),
-		'def_estimatedqty' 	=> array('type'=>'integer:Unitdef:dolifarm/class/unitdef.class.php', 'label'=>'QtyUnit', 'picto'=>'', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>130, 'foreignkey'=>'user.rowid'),
-		'yieldtodate' 	=> array('type'=>'real', 'label'=>'YieldToDate', 'enabled'=>1, 'visible'=>1, 'isameasure'=>1, 'index'=>1, 'position'=>140),
-		'actualcost' 	=> array('type'=>'price', 'label'=>'ActualCost', 'enabled'=>0, 'visible'=>1, 'isameasure'=>1, 'index'=>1, 'position'=>150),
-		'costmaterial' 	=> array('type'=>'price', 'label'=>'CostMaterial', 'enabled'=>0, 'visible'=>1, 'isameasure'=>1, 'index'=>1, 'position'=>160),
-		'costmanpower' 	=> array('type'=>'price', 'label'=>'CostManpower', 'enabled'=>0, 'visible'=>1, 'isameasure'=>1, 'index'=>1, 'position'=>170),
-		'costenergy' 	=> array('type'=>'price', 'label'=>'CostEnergy', 'enabled'=>0, 'visible'=>1, 'isameasure'=>1, 'index'=>1, 'position'=>180),
-		'status'        => array('type'=>'integer', 'label'=>'Status', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'default'=>0, 'index'=>1, 'position'=>190, 'arrayofkeyval'=>array(0=>'Draft', 1=>'Validated', 9=>'Canceled'), 'validate'=>1),
-		'tms' 			=> array('type'=>'timestamp', 'label'=>'TimeStamp', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>200),
-		'author' 		=> array('type'=>'integer:User:user/class/user.class.php', 'label'=>'Author', 'picto'=>'', 'enabled'=>1, 'visible'=>1,'noteditable'=>1, 'notnull'=> 1, 'position'=>210, 'foreignkey'=>'user.rowid'),
-		'model_pdf'     => array('type'=>'varchar(128)', 'label'=>'ModelPDF', 'enabled'=>0, 'notnull'=> 1,'visible'=>0, 'noteditable'=>1, 'default'=>'', 'notnull'=> 1, 'showoncombobox'=>1, 'index'=>0, 'position'=>180, 'searchall'=>1, 'comment'=>'model pdf', 'validate'=>1,'help'=>'Help')
+		'rowid'         => array('type'=>'integer', 'label'=>'TechnicalID', 'enabled'=>1, 'visible'=>-2, 'noteditable'=>1, 'notnull'=> 1, 'index'=>1, 'position'=>10, 'comment'=>'Id', 'css'=>'left'),
+		'ref' 			=>array('type'=>'varchar(30)', 'label'=>'RefCropPlan', 'enabled'=>1, 'visible'=>4, 'notnull'=>1, 'noteditable'=>0, 'default'=>'(PROV)', 'showoncombobox'=>0, 'position'=>20, 'validate'=>1),
+		'label'         => array('type'=>'varchar(255)', 'label'=>'CropPlanName', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>30, 'searchall'=>1, 'css'=>'minwidth300', 'cssview'=>'wordbreak', 'help'=>'HelpLabelCropPlan', 'showoncombobox'=>2, 'validate'=>1),
+		'fk_farm' 		=> array('type'=>'integer:Societe:societe/class/societe.class.php', 'label'=>'Farm', 'picto'=>'user', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>40, 'foreignkey'=>'societe.rowid'),	
+		'fk_plot' 		=> array('type'=>'integer:Plots:dolitrace/class/plots.class.php', 'label'=>'Plot',     'picto'=>'',     'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>50, 'foreignkey'=>'dolifarm_plots.rowid'),
+		'fk_croptype' 	=> array('type'=>'integer:Crops:dolitrace/class/crops.class.php', 'label'=>'CropType', 'picto'=>'crops', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>60, 'foreignkey'=>'dolifarm_crops.rowid'),	
+		'fk_project'	=> array('type'=>'integer:Project:projet/class/project.class.php', 'label'=>'Project', 'picto'=>'project', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 0, 'position'=>70, 'foreignkey'=>'project.rowid'),
+		'startdate' 	=> array('type'=>'date', 'label'=>'StartDate', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>80),
+		'finishdate' 	=> array('type'=>'date', 'label'=>'FinishDate', 'enabled'=>1, 'visible'=>1, 'notnull'=> 1, 'position'=>90),
+		'note_public'   => array('type'=>'html', 'label'=>'NotePublic', 'enabled'=>1, 'visible'=>3, 'position'=>100, 'validate'=>1, 'cssview'=>'wordbreak'),
+		'note_private'  => array('type'=>'html', 'label'=>'NotePrivate', 'enabled'=>1, 'visible'=>3, 'position'=>110, 'validate'=>1, 'cssview'=>'wordbreak'),
+		'estimatedyield' 			=> array('type'=>'real', 'label'=>'EstimatedYield', 'enabled'=>1, 'visible'=>1,  'index'=>1, 'isameasure'=>1, 'position'=>130),
+		'def_estimatedyieldunit' 	=> array('type'=>'integer:Unitdef:dolifarm/class/unitdef.class.php', 'label'=>'YieldUnit', 'picto'=>'unitdef', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>140, 'foreignkey'=>'unitdef.rowid'),
+		'def_yieldtodateunit' 		=> array('type'=>'integer:Unitdef:dolifarm/class/unitdef.class.php', 'label'=>'YieldUnit', 'picto'=>'', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>150, 'foreignkey'=>'unitdef.rowid'),
+		'estimatedqty' 	=> array('type'=>'real', 'label'=>'EstimatedQuantityBoxes', 'enabled'=>1, 'visible'=>3, 'isameasure'=>1, 'index'=>1, 'position'=>160),
+		'def_estimatedqty' 	=> array('type'=>'integer:Unitdef:dolifarm/class/unitdef.class.php', 'label'=>'QtyUnit', 'picto'=>'', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>170, 'foreignkey'=>'user.rowid'),
+		'yieldtodate' 	=> array('type'=>'real', 'label'=>'YieldToDate', 'enabled'=>1, 'visible'=>1, 'isameasure'=>1, 'index'=>1, 'position'=>180),
+		'actualcost' 	=> array('type'=>'price', 'label'=>'ActualCost', 'enabled'=>0, 'visible'=>1, 'isameasure'=>1, 'index'=>1, 'position'=>190),
+		'costmaterial' 	=> array('type'=>'price', 'label'=>'CostMaterial', 'enabled'=>0, 'visible'=>1, 'isameasure'=>1, 'index'=>1, 'position'=>200),
+		'costmanpower' 	=> array('type'=>'price', 'label'=>'CostManpower', 'enabled'=>0, 'visible'=>1, 'isameasure'=>1, 'index'=>1, 'position'=>210),
+		'costenergy' 	=> array('type'=>'price', 'label'=>'CostEnergy', 'enabled'=>0, 'visible'=>1, 'isameasure'=>1, 'index'=>1, 'position'=>220),
+		'status'        => array('type'=>'integer', 'label'=>'Status', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'default'=>0, 'index'=>1, 'position'=>230, 'arrayofkeyval'=>array(0=>'Draft', 1=>'Validated', 9=>'Canceled'), 'validate'=>1),
+		'tms' 			=> array('type'=>'timestamp', 'label'=>'TimeStamp', 'enabled'=>1, 'visible'=>-2, 'notnull'=> 1, 'position'=>240),
+		'author' 		=> array('type'=>'integer:User:user/class/user.class.php', 'label'=>'Author', 'picto'=>'', 'enabled'=>1, 'visible'=>1,'noteditable'=>1, 'notnull'=> 1, 'position'=>250, 'foreignkey'=>'user.rowid'),
+		'model_pdf'     => array('type'=>'varchar(128)', 'label'=>'ModelPDF', 'enabled'=>0, 'notnull'=> 1,'visible'=>0, 'noteditable'=>1, 'default'=>'', 'notnull'=> 1, 'showoncombobox'=>1, 'index'=>0, 'position'=>260, 'searchall'=>1, 'comment'=>'model pdf', 'validate'=>1,'help'=>'Help'),
+		'last_model_pdf' => array('type'=>'varchar(128)', 'label'=>'ModelPDF', 'enabled'=>0, 'notnull'=> 1,'visible'=>0, 'noteditable'=>1, 'default'=>'', 'notnull'=> 1, 'showoncombobox'=>1, 'index'=>0, 'position'=>270, 'searchall'=>1, 'comment'=>'model pdf', 'validate'=>1,'help'=>'Help')
 
 	);
 
@@ -297,7 +298,7 @@ class Cropplans extends CommonObject
 			$this->fields['myfield']['visible'] = 1;
 			$this->fields['myfield']['noteditable'] = 0;
 		}*/
-		
+			
 		/* Disabled the fields about the costs according to the module setup
 		PIPPO */
 		if ($conf->global->DOLITRACE_COSTS_MANAGEMENT) {
@@ -316,9 +317,10 @@ class Cropplans extends CommonObject
 			}
 		 }
 		$db->free($resqlfarmtype);
+		// Refine the fields type according to the present info (farm, lang, etc) 
 		$this->fields['fk_farm']['type'] =     'integer:Societe:societe/class/societe.class.php:1:(t.fk_typent='.$farmtype->id.'):t.nom'; 
 		$this->fields['fk_plot']['type'] =     'integer:Plots:dolitrace/class/plots.class.php:1:(t.status=1)'; 
-		$this->fields['fk_croptype']['type'] = 'integer:Crops:dolitrace/class/crops.class.php:1:(t.active=1) and (t.lang = \''.$langs->defaultlang.'\' )'; 
+		$this->fields['fk_croptype']['type'] = 'integer:Crops:dolitrace/class/crops.class.php:1:(t.active=1) and (t.lang = \''.$langs->defaultlang.'\' ):t.crop'; 
 
 		// Unset fields that are disabled
 		foreach ($this->fields as $key => $val) {

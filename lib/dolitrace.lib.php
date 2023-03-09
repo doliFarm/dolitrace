@@ -36,9 +36,10 @@ function dolitraceAdminPrepareHead()
 	$h = 0;
 	$head = array();
 
-	$head[$h][0] = dol_buildpath("/dolitrace/admin/setup.php", 1);
+	$head[$h][0] = dol_buildpath("/custom/dolitrace/admin/setup.php", 1);
 	$head[$h][1] = $langs->trans("Settings");
 	$head[$h][2] = 'settings';
+	return $head; // For the moment we do not manage the others tab 26-02-2023
 	$h++;
 
 	/*
@@ -48,7 +49,7 @@ function dolitraceAdminPrepareHead()
 	$h++;
 	*/
 
-	$head[$h][0] = dol_buildpath("/dolitrace/admin/about.php", 1);
+	$head[$h][0] = dol_buildpath("/custom/dolitrace/admin/about.php", 1);
 	$head[$h][1] = $langs->trans("About");
 	$head[$h][2] = 'about';
 	$h++;

@@ -31,7 +31,7 @@ require_once DOL_DOCUMENT_ROOT.'/custom/dolitrace/core/modules/dolitrace/mod_cro
 /**
  * Class for crops
  */
-class crops extends CommonObject
+class Crops extends CommonObject
 {
 	/**
 	 * @var string ID of module.

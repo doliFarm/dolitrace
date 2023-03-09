@@ -18,6 +18,7 @@ CREATE TABLE llx_dolifarm_crops(
         active BOOLEAN,
 		lang VARCHAR(6),
 		model_pdf VARCHAR(30),
+		last_main_doc VARCHAR(256),
 		status INTEGER(11),
 		tms TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
 		author VARCHAR(30)

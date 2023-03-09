@@ -28,7 +28,7 @@
  * @param	Plots	$object		MyObject
  * @return 	array					Array of tabs
  */
-function plotsPrepareHead($object)
+function cropsPrepareHead($object)
 {
 	global $db, $langs, $conf;
 
@@ -37,7 +37,7 @@ function plotsPrepareHead($object)
 	$h = 0;
 	$head = array();
 
-	$head[$h][0] = dol_buildpath("/custom/dolitrace/plots_card.php", 1).'?id='.$object->id;
+	$head[$h][0] = dol_buildpath("/custom/dolitrace/crops_card.php", 1).'?id='.$object->id;
 	$head[$h][1] = $langs->trans("Plot");
 	$head[$h][2] = 'card';
 	return $head; // For the moment we do not manage the others tab 26-02-2023
@@ -51,7 +51,7 @@ function plotsPrepareHead($object)
 		if (!empty($object->note_public)) {
 			$nbNote++;
 		}
-		$head[$h][0] = dol_buildpath('/custom/dolitrace/plots_note.php', 1).'?id='.$object->id;
+		$head[$h][0] = dol_buildpath('/custom/dolitrace/crops_note.php', 1).'?id='.$object->id;
 		$head[$h][1] = $langs->trans('Notes');
 		if ($nbNote > 0) {
 			$head[$h][1] .= (empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER) ? '<span class="badge marginleftonlyshort">'.$nbNote.'</span>' : '');
@@ -62,10 +62,10 @@ function plotsPrepareHead($object)
 
 	require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
 	require_once DOL_DOCUMENT_ROOT.'/core/class/link.class.php';
-	$upload_dir = $conf->dolitrace->dir_output."/plots/".dol_sanitizeFileName($object->ref);
+	$upload_dir = $conf->dolitrace->dir_output."/crops/".dol_sanitizeFileName($object->ref);
 	$nbFiles = count(dol_dir_list($upload_dir, 'files', 0, '', '(\.meta|_preview.*\.png)$'));
 	$nbLinks = Link::count($db, $object->element, $object->id);
-	$head[$h][0] = dol_buildpath("/custom/dolitrace/plots_document.php", 1).'?id='.$object->id;
+	$head[$h][0] = dol_buildpath("/custom/dolitrace/crops_document.php", 1).'?id='.$object->id;
 	$head[$h][1] = $langs->trans('Documents');
 	if (($nbFiles + $nbLinks) > 0) {
 		$head[$h][1] .= '<span class="badge marginleftonlyshort">'.($nbFiles + $nbLinks).'</span>';
@@ -73,7 +73,7 @@ function plotsPrepareHead($object)
 	$head[$h][2] = 'document';
 	$h++;
 
-	$head[$h][0] = dol_buildpath("/custom/dolitrace/plots_agenda.php", 1).'?id='.$object->id;
+	$head[$h][0] = dol_buildpath("/custom/dolitrace/crops_agenda.php", 1).'?id='.$object->id;
 	$head[$h][1] = $langs->trans("Events");
 	$head[$h][2] = 'agenda';
 	$h++;
@@ -86,9 +86,9 @@ function plotsPrepareHead($object)
 	//$this->tabs = array(
 	//	'entity:-tabname:Title:@dolitrace:/dolitrace/mypage.php?id=__ID__'
 	//); // to remove a tab
-	complete_head_from_modules($conf, $langs, $object, $head, $h, 'plots@dolitrace');
+	complete_head_from_modules($conf, $langs, $object, $head, $h, 'crops@dolitrace');
 
-	complete_head_from_modules($conf, $langs, $object, $head, $h, 'plots@dolitrace', 'remove');
+	complete_head_from_modules($conf, $langs, $object, $head, $h, 'crops@dolitrace', 'remove');
 
 	return $head;
 }

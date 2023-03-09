@@ -1,8 +1,7 @@
 <?php
 /* Copyright (C) 2017 Laurent Destailleur  <eldy@users.sourceforge.net>
  * Copyright (C) ---Put here your own copyright and developer email---
- * Copyright (C) 2022 		Luigi Grillo - luigi.grillo@gmail.com (http://luigigrillo.com)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or
@@ -18,14 +17,10 @@
  */
 
 /**
- *   	\file       /dolitrace/cropplans_card.php
+ *   	\file       htdocs/modulebuilder/template/crops_card.php
  *		\ingroup    dolitrace
- *		\brief      Page to create/edit/view cropplans
+ *		\brief      Page to create/edit/view crops
  */
-/**
-* TODO
-* 	- change the plot list dynamically according to the farm selection
-*/
 
 //if (! defined('NOREQUIREDB'))              define('NOREQUIREDB', '1');				// Do not create database handler $db
 //if (! defined('NOREQUIREUSER'))            define('NOREQUIREUSER', '1');				// Do not load object $user
@@ -83,46 +78,28 @@ if (!$res) {
 require_once DOL_DOCUMENT_ROOT.'/core/class/html.formcompany.class.php';
 require_once DOL_DOCUMENT_ROOT.'/core/class/html.formfile.class.php';
 require_once DOL_DOCUMENT_ROOT.'/core/class/html.formprojet.class.php';
-dol_include_once('/dolitrace/class/cropplans.class.php');
-dol_include_once('/dolitrace/lib/dolitrace_cropplans.lib.php');
+dol_include_once('/dolitrace/class/crops.class.php');
+dol_include_once('/dolitrace/lib/dolitrace_crops.lib.php');
 
 // Load translation files required by the page
 $langs->loadLangs(array("dolitrace@dolitrace", "other"));
 
 // Get parameters
-$new= GETPOST('new', 'bool');
 $id = GETPOST('id', 'int');
 $ref = GETPOST('ref', 'alpha');
-$label = GETPOST('label', 'alpha');
 $action = GETPOST('action', 'aZ09');
 $confirm = GETPOST('confirm', 'alpha');
 $cancel = GETPOST('cancel', 'aZ09');
-$contextpage = GETPOST('contextpage', 'aZ') ? GETPOST('contextpage', 'aZ') : 'cropplanscard'; // To manage different context of search
+$contextpage = GETPOST('contextpage', 'aZ') ? GETPOST('contextpage', 'aZ') : 'cropscard'; // To manage different context of search
 $backtopage = GETPOST('backtopage', 'alpha');
 $backtopageforcancel = GETPOST('backtopageforcancel', 'alpha');
 $lineid   = GETPOST('lineid', 'int');
-$fk_farm  = GETPOST('fk_farm', 'int');
-$fk_plot  = GETPOST('fk_plot', 'int');
-$fk_croptype  = GETPOST('fk_croptype', 'int');
-$startdate = GETPOST('startdate', 'date');;
-$finishdate =GETPOST('finishdate', 'date');;
 
 // Initialize technical objects
-$object = new Cropplans($db);
+$object = new Crops($db);
 $extrafields = new ExtraFields($db);
 $diroutputmassaction = $conf->dolitrace->dir_output.'/temp/massgeneration/'.$user->id;
-$hookmanager->initHooks(array('cropplanscard', 'globalcard')); // Note that conf->hooks_modules contains array
-
-// Fields Configuration LG 28.05.2022
-if (!empty($fk_farm) && !($new)) {
-	$object->fields['fk_farm']['noteditable']=1;
-}
-if (!empty($fk_cropplans)) {
-	$object->fields['fk_cropplans']['noteditable']=1;
-}
-if (!empty($fk_plot)) {
-	$object->fields['fk_plot']['noteditable']=1;
-}
+$hookmanager->initHooks(array('cropscard', 'globalcard')); // Note that conf->hooks_modules contains array
 
 // Fetch optionals attributes and labels
 $extrafields->fetch_name_optionals_label($object->table_element);
@@ -149,11 +126,11 @@ include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php'; // Must be includ
 // Set $enablepermissioncheck to 1 to enable a minimum low level of checks
 $enablepermissioncheck = 0;
 if ($enablepermissioncheck) {
-	$permissiontoread = $user->rights->dolitrace->cropplans->read;
-	$permissiontoadd = $user->rights->dolitrace->cropplans->write; // Used by the include of actions_addupdatedelete.inc.php and actions_lineupdown.inc.php
-	$permissiontodelete = $user->rights->dolitrace->cropplans->delete || ($permissiontoadd && isset($object->status) && $object->status == $object::STATUS_DRAFT);
-	$permissionnote = $user->rights->dolitrace->cropplans->write; // Used by the include of actions_setnotes.inc.php
-	$permissiondellink = $user->rights->dolitrace->cropplans->write; // Used by the include of actions_dellink.inc.php
+	$permissiontoread = $user->rights->dolitrace->crops->read;
+	$permissiontoadd = $user->rights->dolitrace->crops->write; // Used by the include of actions_addupdatedelete.inc.php and actions_lineupdown.inc.php
+	$permissiontodelete = $user->rights->dolitrace->crops->delete || ($permissiontoadd && isset($object->status) && $object->status == $object::STATUS_DRAFT);
+	$permissionnote = $user->rights->dolitrace->crops->write; // Used by the include of actions_setnotes.inc.php
+	$permissiondellink = $user->rights->dolitrace->crops->write; // Used by the include of actions_dellink.inc.php
 } else {
 	$permissiontoread = 1;
 	$permissiontoadd = 1; // Used by the include of actions_addupdatedelete.inc.php and actions_lineupdown.inc.php
@@ -162,7 +139,7 @@ if ($enablepermissioncheck) {
 	$permissiondellink = 1;
 }
 
-$upload_dir = $conf->dolitrace->multidir_output[isset($object->entity) ? $object->entity : 1].'/cropplans';
+$upload_dir = $conf->dolitrace->multidir_output[isset($object->entity) ? $object->entity : 1].'/crops';
 
 // Security check (enable the most restrictive one)
 //if ($user->socid > 0) accessforbidden();
@@ -186,29 +163,23 @@ if ($reshook < 0) {
 if (empty($reshook)) {
 	$error = 0;
 
-	$backurlforlist = dol_buildpath('/dolitrace/cropplans.php', 1);
+	$backurlforlist = dol_buildpath('/dolitrace/crops_list.php', 1);
 
 	if (empty($backtopage) || ($cancel && empty($id))) {
 		if (empty($backtopage) || ($cancel && strpos($backtopage, '__ID__'))) {
 			if (empty($id) && (($action != 'add' && $action != 'create') || $cancel)) {
 				$backtopage = $backurlforlist;
 			} else {
-				$backtopage = dol_buildpath('/dolitrace/cropplans_card.php', 1).'?id='.((!empty($id) && $id > 0) ? $id : '__ID__');
+				$backtopage = dol_buildpath('/dolitrace/crops_card.php', 1).'?id='.((!empty($id) && $id > 0) ? $id : '__ID__');
 			}
 		}
 	}
 
-	$triggermodname = 'DOLITRACE_CROPPLANS_MODIFY'; // Name of trigger action code to execute when we modify record
+	$triggermodname = 'DOLITRACE_CROPS_MODIFY'; // Name of trigger action code to execute when we modify record
 
 	// Actions cancel, add, update, update_extras, confirm_validate, confirm_delete, confirm_deleteline, confirm_clone, confirm_close, confirm_setdraft, confirm_reopen
+	include DOL_DOCUMENT_ROOT.'/core/actions_addupdatedelete.inc.php';
 
-	if ( strtotime(str_replace("/", "-", $startdate))  > strtotime(str_replace("/", "-", $finishdate)) ) {    
-	     // TODO keep the editing page (update or create) 
-	     setEventMessages($langs->trans("ErrorStartDateFinishDate"), null, 'errors');
-	    // header('Location: '.$_SERVER["PHP_SELF"].'?id='.$id.'&action=edit');
-	}  else {
-		include DOL_DOCUMENT_ROOT.'/core/actions_addupdatedelete.inc.php';
-	}
 	// Actions when linking object each other
 	include DOL_DOCUMENT_ROOT.'/core/actions_dellink.inc.php';
 
@@ -229,9 +200,9 @@ if (empty($reshook)) {
 	}
 
 	// Actions to send emails
-	$triggersendname = 'DOLITRACE_CROPPLANS_SENTBYMAIL';
-	$autocopy = 'MAIN_MAIL_AUTOCOPY_CROPPLANS_TO';
-	$trackid = 'cropplans'.$object->id;
+	$triggersendname = 'DOLITRACE_CROPS_SENTBYMAIL';
+	$autocopy = 'MAIN_MAIL_AUTOCOPY_CROPS_TO';
+	$trackid = 'crops'.$object->id;
 	include DOL_DOCUMENT_ROOT.'/core/actions_sendmails.inc.php';
 }
 
@@ -248,7 +219,7 @@ $form = new Form($db);
 $formfile = new FormFile($db);
 $formproject = new FormProjets($db);
 
-$title = $langs->trans("CropPlan");
+$title = $langs->trans("Crops");
 $help_url = '';
 llxHeader('', $title, $help_url);
 
@@ -267,6 +238,7 @@ llxHeader('', $title, $help_url);
 // });
 // </script>';
 
+
 // Part to create
 if ($action == 'create') {
 	if (empty($permissiontoadd)) {
@@ -274,19 +246,11 @@ if ($action == 'create') {
 		exit;
 	}
 
-	print load_fiche_titre($langs->trans("NewObject", $langs->transnoentitiesnoconv("CropPlan")), '', 'object_'.$object->picto);
+	print load_fiche_titre($langs->trans("NewObject", $langs->transnoentitiesnoconv("Crops")), '', 'object_'.$object->picto);
 
 	print '<form method="POST" action="'.$_SERVER["PHP_SELF"].'">';
 	print '<input type="hidden" name="token" value="'.newToken().'">';
 	print '<input type="hidden" name="action" value="add">';
-	print '<input type="hidden" name="id" value="'.$id.'">';
-	if (!empty($fk_plot))     print '<input type="hidden" name="fk_plot" value="'.$fk_plot.'">';
-	if (!empty($fk_croptype)) print '<input type="hidden" name="fk_croptype" value="'.$fk_croptype.'">';
-	if (!empty($fk_farm)) { 
-		print '<input type="hidden" name="fk_farm" value="'.$fk_farm.'">';
-	    $object->fields['fk_plot']['type'] = 'integer:Plots:dolitrace/class/plots.class.php:AddCreateButtonOrNot:(t.fk_farm='.$fk_farm.') and (t.status=1)'; 
-	}
-
 	if ($backtopage) {
 		print '<input type="hidden" name="backtopage" value="'.$backtopage.'">';
 	}
@@ -298,10 +262,7 @@ if ($action == 'create') {
 
 	// Set some default values
 	//if (! GETPOSTISSET('fieldname')) $_POST['fieldname'] = 'myvalue';
-	$object->fields["author"]["default"] = $user->id;   
-	print '<input type="hidden" name="author" value="'.$user->id.'">';
 
-	
 	print '<table class="border centpercent tableforfieldcreate">'."\n";
 
 	// Common attributes
@@ -323,7 +284,7 @@ if ($action == 'create') {
 
 // Part to edit record
 if (($id || $ref) && $action == 'edit') {
-	print load_fiche_titre($langs->trans("CropPlan"), '', 'object_'.$object->picto);
+	print load_fiche_titre($langs->trans("Crops"), '', 'object_'.$object->picto);
 
 	print '<form method="POST" action="'.$_SERVER["PHP_SELF"].'">';
 	print '<input type="hidden" name="token" value="'.newToken().'">';
@@ -359,14 +320,14 @@ if (($id || $ref) && $action == 'edit') {
 if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'create'))) {
 	$res = $object->fetch_optionals();
 
-	$head = cropplansPrepareHead($object);
-	print dol_get_fiche_head($head, 'card', $langs->trans("CropPlans"), -1, $object->picto);
+	$head = cropsPrepareHead($object);
+	print dol_get_fiche_head($head, 'card', $langs->trans("Crops"), -1, $object->picto);
 
 	$formconfirm = '';
 
 	// Confirmation to delete
 	if ($action == 'delete') {
-		$formconfirm = $form->formconfirm($_SERVER["PHP_SELF"].'?id='.$object->id, $langs->trans('DeleteCropPlans'), $langs->trans('ConfirmDeleteObject'), 'confirm_delete', '', 0, 1);
+		$formconfirm = $form->formconfirm($_SERVER["PHP_SELF"].'?id='.$object->id, $langs->trans('DeleteCrops'), $langs->trans('ConfirmDeleteObject'), 'confirm_delete', '', 0, 1);
 	}
 	// Confirmation to delete line
 	if ($action == 'deleteline') {
@@ -410,7 +371,7 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 
 	// Object card
 	// ------------------------------------------------------------
-	$linkback = '<a href="'.dol_buildpath('/dolitrace/cropplans.php', 1).'?restore_lastsearch_values=1'.(!empty($socid) ? '&socid='.$socid : '').'">'.$langs->trans("BackToList").'</a>';
+	$linkback = '<a href="'.dol_buildpath('/dolitrace/crops_list.php', 1).'?restore_lastsearch_values=1'.(!empty($socid) ? '&socid='.$socid : '').'">'.$langs->trans("BackToList").'</a>';
 
 	$morehtmlref = '<div class="refidno">';
 	/*
@@ -449,7 +410,9 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 	 }*/
 	$morehtmlref .= '</div>';
 
+
 	dol_banner_tab($object, 'ref', $linkback, 1, 'ref', 'ref', $morehtmlref);
+
 
 	print '<div class="fichecenter">';
 	print '<div class="fichehalfleft">';
@@ -460,11 +423,10 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 	//$keyforbreak='fieldkeytoswitchonsecondcolumn';	// We change column just before this field
 	//unset($object->fields['fk_project']);				// Hide field already shown in banner
 	//unset($object->fields['fk_soc']);					// Hide field already shown in banner
-	
 	include DOL_DOCUMENT_ROOT.'/core/tpl/commonfields_view.tpl.php';
 
 	// Other attributes. Fields from hook formObjectOptions and Extrafields.
-	//include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_view.tpl.php';
+	include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_view.tpl.php';
 
 	print '</table>';
 	print '</div>';
@@ -546,9 +508,9 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 			if ($object->status == $object::STATUS_VALIDATED) {
 				print dolGetButtonAction($langs->trans('SetToDraft'), '', 'default', $_SERVER["PHP_SELF"].'?id='.$object->id.'&action=confirm_setdraft&confirm=yes&token='.newToken(), '', $permissiontoadd);
 			}
-			if ($object->status != $object::STATUS_VALIDATED) {
-				print dolGetButtonAction($langs->trans('Modify'), '', 'default', $_SERVER["PHP_SELF"].'?id='.$object->id.'&action=edit&token='.newToken(), '', $permissiontoadd);
-			}
+
+			print dolGetButtonAction($langs->trans('Modify'), '', 'default', $_SERVER["PHP_SELF"].'?id='.$object->id.'&action=edit&token='.newToken(), '', $permissiontoadd);
+
 			// Validate
 			if ($object->status == $object::STATUS_DRAFT) {
 				if (empty($object->table_element_line) || (is_array($object->lines) && count($object->lines) > 0)) {
@@ -591,7 +553,6 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 		$action = 'presend';
 	}
 
-
 	if ($action != 'presend') {
 		print '<div class="fichecenter"><div class="fichehalfleft">';
 		print '<a name="builddoc"></a>'; // ancre
@@ -606,20 +567,19 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 			$urlsource = $_SERVER["PHP_SELF"]."?id=".$object->id;
 			$genallowed = $permissiontoread; // If you can read, you can build the PDF to read content
 			$delallowed = $permissiontoadd; // If you can create/edit, you can remove a file on card
-			print $formfile->showdocuments('dolitrace:Cropplans', $object->element.'/'.$objref, $filedir, $urlsource, $genallowed, $delallowed, $object->model_pdf, 1, 0, 0, 28, 0, '', '', '', $langs->defaultlang);
+			print $formfile->showdocuments('dolitrace:Crops', $object->element.'/'.$objref, $filedir, $urlsource, $genallowed, $delallowed, $object->model_pdf, 1, 0, 0, 28, 0, '', '', '', $langs->defaultlang);
 		}
 
 		// Show links to link elements
-		$linktoelem = $form->showLinkToObjectBlock($object, null, array('cropplans'));
-		$somethingshown = $form->showLinkedObjectBlock($object);
+		$linktoelem = $form->showLinkToObjectBlock($object, null, array('crops'));
+		$somethingshown = $form->showLinkedObjectBlock($object, $linktoelem);
 
-		$object->fetchObjectLinked($object->id);
 
 		print '</div><div class="fichehalfright">';
 
 		$MAXEVENT = 10;
 
-		$morehtmlcenter = dolGetButtonTitle($langs->trans('SeeAll'), '', 'fa fa-list-alt imgforviewmode', dol_buildpath('/dolitrace/cropplans_agenda.php', 1).'?id='.$object->id);
+		$morehtmlcenter = dolGetButtonTitle($langs->trans('SeeAll'), '', 'fa fa-list-alt imgforviewmode', dol_buildpath('/dolitrace/crops_agenda.php', 1).'?id='.$object->id);
 
 		// List of actions on element
 		include_once DOL_DOCUMENT_ROOT.'/core/class/html.formactions.class.php';
@@ -635,23 +595,13 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 	}
 
 	// Presend form
-	$modelmail = 'cropplans';
+	$modelmail = 'crops';
 	$defaulttopic = 'InformationMessage';
 	$diroutput = $conf->dolitrace->dir_output;
-	$trackid = 'cropplans'.$object->id;
+	$trackid = 'crops'.$object->id;
 
 	include DOL_DOCUMENT_ROOT.'/core/tpl/card_presend.tpl.php';
 }
-
-echo "<script>
-			$('#fk_farm').change(function() {
-			        if (window.location.href.includes(\"fk_farm\")) {
-						window.location.replace(window.location.href.replace(/fk_farm=[0-9]/, \"fk_farm=\"+$(this).val()));
-					} else {
-						window.location.replace(window.location.href + \"&fk_farm=\"+$(this).val()+\"&new=true\"+\"&label=\"+$(label).val())
-					}
-				});
-		</script>";
 
 // End of page
 llxFooter();

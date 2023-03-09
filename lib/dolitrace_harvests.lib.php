@@ -37,7 +37,7 @@ function harvestsPrepareHead($object)
 	$h = 0;
 	$head = array();
 
-	$head[$h][0] = dol_buildpath("/dolitrace/harvests_card.php", 1).'?id='.$object->id;
+	$head[$h][0] = dol_buildpath("/custom/dolitrace/harvests_card.php", 1).'?id='.$object->id;
 	$head[$h][1] = $langs->trans("Harvest");
 	$head[$h][2] = 'card';
 	$h++;
@@ -50,7 +50,7 @@ function harvestsPrepareHead($object)
 		if (!empty($object->note_public)) {
 			$nbNote++;
 		}
-		$head[$h][0] = dol_buildpath('/dolitrace/harvests_note.php', 1).'?id='.$object->id;
+		$head[$h][0] = dol_buildpath('/custom/dolitrace/harvests_note.php', 1).'?id='.$object->id;
 		$head[$h][1] = $langs->trans('Notes');
 		if ($nbNote > 0) {
 			$head[$h][1] .= (empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER) ? '<span class="badge marginleftonlyshort">'.$nbNote.'</span>' : '');
@@ -72,7 +72,7 @@ function harvestsPrepareHead($object)
 	$head[$h][2] = 'document';
 	$h++;
 
-	$head[$h][0] = dol_buildpath("/dolitrace/harvests_agenda.php", 1).'?id='.$object->id;
+	$head[$h][0] = dol_buildpath("/custom/dolitrace/harvests_agenda.php", 1).'?id='.$object->id;
 	$head[$h][1] = $langs->trans("Events");
 	$head[$h][2] = 'agenda';
 	$h++;
