@@ -110,9 +110,10 @@ $diroutputmassaction = $conf->dolitrace->dir_output.'/temp/massgeneration/'.$use
 $hookmanager->initHooks(array('harvestscard', 'globalcard')); // Note that conf->hooks_modules contains array
 
 // Fields Configuration LG 28.05.2022
-if (!empty($fk_farm) && !empty($backtopage) ) {
+if (!empty($fk_farm) ) {
 	$object->fields['fk_farm']['noteditable']=1;
 }
+
 if (!empty($fk_cropplan)) {
 	$object->fields['fk_cropplan']['noteditable']=1;
 }

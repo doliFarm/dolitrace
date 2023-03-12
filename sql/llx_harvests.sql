@@ -10,6 +10,7 @@ CREATE TABLE llx_dolifarm_harvests(
         quantity FLOAT,
         def_quantityunit VARCHAR(30),
         tracecode VARCHAR(30),
+        refshipment VARCHAR(30),
 		fk_cropplan INTEGER (11),
 		fk_farm INTEGER (11),
 		fk_product INTEGER (11),

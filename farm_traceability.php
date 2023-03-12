@@ -88,7 +88,7 @@ $soc = new Societe($db);
 /*
  * Actions
  */
-
+/*
 if ( ($action == 'searchFarm') && !empty($tracecode)  ){
 	$traceabilty = $dolitrace->traceprod($tracecode);
 	if ($traceabilty) {
@@ -97,7 +97,7 @@ if ( ($action == 'searchFarm') && !empty($tracecode)  ){
 		$harvestid = $traceabilty["HarvestInfo"]["id"];
 	}
 }
-
+*/
 // None
 
 
@@ -109,17 +109,17 @@ if ( ($action == 'searchFarm') && !empty($tracecode)  ){
 
 llxHeader("", $langs->trans("DoliTraceArea"));
 
-print load_fiche_titre($langs->trans("DoliTraceArea"), '', 'dolitrace.png@dolitrace');
+// print load_fiche_titre($langs->trans("DoliTraceArea"), '', 'dolitrace.png@dolitrace');
 
-/*
 $soc->fetch($socid);
 $head = societe_prepare_head($soc);
 print dol_get_fiche_head($head, 'dolitrace', $langs->trans("ThirdParty"), 0, 'company');
-*/
+
+dol_banner_tab($soc, 'socid', $linkback, ($user->socid ? 0 : 1), 'rowid', 'nom');
 
 
 print '<div class="div-table-responsive-no-min"><div class="fichecenter">';
-
+        /*
         print '<form id="searchTraceForm" method="GET" action="'.$_SERVER['PHP_SELF'].'?idmenu=1499&mainmenu=dolifarm">';
 		print '<input type="hidden" name="action" id="action" value="searchFarm">';
 		print '<table class="noborder centpercent">';
@@ -131,6 +131,7 @@ print '<div class="div-table-responsive-no-min"><div class="fichecenter">';
 		print '<th>'.$form->showFilterButtons().'</tr></tr>';
 		print '</table>';
         print '</form>';
+        */
 		
 		if (!empty($tracecode)) {
 			$trace = $dolitrace->traceprod($tracecode);
@@ -148,18 +149,25 @@ print '<div class="div-table-responsive-no-min"><div class="fichecenter">';
 			print '<div class="fichesecondleft">';
 			print '<div class="div-table-responsive-no-min">';
 			print '<table class="noborder centpercent">';	
-			print '<tr class="liste_titre"><th>'.$langs->trans("FarmInfo").'</th><td></td></tr>';
+			print '<tr class=""><td class="nobordernopadding col-title"><div class="titre inline-block">'.$langs->trans("GeneralInfo").'</div></td></tr>';
 			print '<tr ><td>'.$dolitrace->farmInfo($socid>0?$socid:$farmid).'</td></tr>';
 			print "</table>";
 			print '</div>';
 		}
 		
-		if ($socid > 0) {    
+		if ($socid > 0) {    // TODO improve the look&feel of the table
 			print '<div class="fichesecondleft">';
 			print '<div class="div-table-responsive-no-min">';
 			print '<table class="noborder centpercent" >';	
-			print '<tr class="liste_titre"><th>'.$langs->trans("CropsPlan").'</th><th style=" background-color: white;border:0px;"></th><th>'.$langs->trans("Plots").'</th></tr>';
-			print '<tr><td width="50%">'.$dolitrace->productionplans($socid).'</td><td></td><td>'.$dolitrace->plots_list($socid).'</td></tr>';
+			print '<tr class="liste_titre">
+			             <td class="nobordernopadding col-title"><div class="titre inline-block">'.$langs->trans("CropsPlan").'</div></td>
+			             <td> </td>
+			             <td class="nobordernopadding col-title"><div class="titre inline-block">'.$langs->trans("Plots")    .'</div></td>
+			          </tr>';
+			print '<tr>
+						<td width="50%">'.$dolitrace->productionplans($socid).'</td>
+						<td> </td>
+						<td>'.$dolitrace->plots_list($socid).'</td></tr>';
 			print "</table>";
 			print '</div>';
 		}
