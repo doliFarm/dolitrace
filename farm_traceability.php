@@ -118,61 +118,45 @@ print dol_get_fiche_head($head, 'dolitrace', $langs->trans("ThirdParty"), 0, 'co
 dol_banner_tab($soc, 'socid', $linkback, ($user->socid ? 0 : 1), 'rowid', 'nom');
 
 
-print '<div class="div-table-responsive-no-min"><div class="fichecenter">';
-        /*
-        print '<form id="searchTraceForm" method="GET" action="'.$_SERVER['PHP_SELF'].'?idmenu=1499&mainmenu=dolifarm">';
-		print '<input type="hidden" name="action" id="action" value="searchFarm">';
-		print '<table class="noborder centpercent">';
-		print '<tr class="liste_titre">';
-		if ($conf->global->DOLIFARM_MULTIFARMS) { 
-			print '<th>'.$langs->trans("Farm").$form->select_thirdparty_list('',"socid","fk_typent in (234)",'SelectFarm').'</th>';
-		} 
-		print '<th>'.$langs->trans("Tracecode").'<input name="tracecode" id="tracecode" type="textarea"></th>';
-		print '<th>'.$form->showFilterButtons().'</tr></tr>';
-		print '</table>';
-        print '</form>';
-        */
-		
-		if (!empty($tracecode)) {
-			$trace = $dolitrace->traceprod($tracecode);
-			print '<div class="fichesecondleft">';
+print '<div class="fichecenter">';
+        
+		if ($socid > 0) {    
+			
 			print '<div class="div-table-responsive-no-min">';
-			print '<table class="noborder centpercent">';	
-			print '<tr class="liste_titre"><th>'.$langs->trans("ProductTrace").'<br>'.$trace["CropInfo"]["id"].'</th><th>'.$langs->trans("TraceCode").': '.$tracecode.'</th></tr>';
-			print '<tr class="liste_titre"><th>'.$langs->trans("HarvestInfo").'</th><th>'.$langs->trans("PlotsInfo").'</th></tr>';
-			print '<tr ><td>'.$trace["HarvestInfo"]["id"].'</td><td>'.$trace["PlotInfo"]["id"].'</td></tr>';
-			print "</table>";
+			print '<table class="centpercent notopnoleftnoright table-fiche-title">
+			          <tbody><tr class="titre ">
+			                   <td class="nobordernopadding valignmiddle col-title"> <div class="titre inline-block">'.$langs->trans("CropsPlan").'</div></td>
+			                   <td class="nobordernopadding center valignmiddle"><a class="btnTitle" href="/dolibarr/custom/dolitrace/cropplans.php" title="'.$langs->trans("SeeAll").'"><span class="fa fa-list-alt imgforviewmode valignmiddle btnTitle-icon"></span></a></td>
+			                   <td class="nobordernopadding titre_right wordbreakimp right valignmiddle"><a class="btnTitle btnTitlePlus" href="/dolibarr/custom/dolitrace/cropplans_card.php?action=create&fk_farm='.$socid.'" title="'.$langs->trans("NewPlot").'"><span class="fa fa-plus-circle valignmiddle btnTitle-icon"></span></a></td>
+			                   </tr>
+			          </tbody></table>';
+			print $dolitrace->cropplans_list($socid);	
 			print '</div>';
-		}
-		
-		if ($action == 'searchFarm') {
-			print '<div class="fichesecondleft">';
-			print '<div class="div-table-responsive-no-min">';
-			print '<table class="noborder centpercent">';	
-			print '<tr class=""><td class="nobordernopadding col-title"><div class="titre inline-block">'.$langs->trans("GeneralInfo").'</div></td></tr>';
-			print '<tr ><td>'.$dolitrace->farmInfo($socid>0?$socid:$farmid).'</td></tr>';
-			print "</table>";
+					
+			print '<div class="">';
+			print '<table class="centpercent notopnoleftnoright table-fiche-title">
+			          <tbody><tr class="titre">
+			                   <td class="nobordernopadding valignmiddle col-title"> <div class="titre inline-block">'.$langs->trans("Plots").'</div></td>
+			                   <td class="nobordernopadding center valignmiddle"><a class="btnTitle" href="/dolibarr/custom/dolitrace/cropplans.php" title="'.$langs->trans("SeeAll").'"><span class="fa fa-list-alt imgforviewmode valignmiddle btnTitle-icon"></span></a></td>
+			                   <td class="nobordernopadding titre_right wordbreakimp right valignmiddle"><a class="btnTitle btnTitlePlus" href="/dolibarr/custom/dolitrace/plots_card.php?action=create&fk_farm='.$socid.'" title="'.$langs->trans("NewPlot").'"><span class="fa fa-plus-circle valignmiddle btnTitle-icon"></span></a></td>
+			                   </tr>
+			          </tbody></table>';
+			print $dolitrace->plots_list($socid);	
 			print '</div>';
-		}
-		
-		if ($socid > 0) {    // TODO improve the look&feel of the table
-			print '<div class="fichesecondleft">';
-			print '<div class="div-table-responsive-no-min">';
-			print '<table class="noborder centpercent" >';	
-			print '<tr class="liste_titre">
-			             <td class="nobordernopadding col-title"><div class="titre inline-block">'.$langs->trans("CropsPlan").'</div></td>
-			             <td> </td>
-			             <td class="nobordernopadding col-title"><div class="titre inline-block">'.$langs->trans("Plots")    .'</div></td>
-			          </tr>';
-			print '<tr>
-						<td width="50%">'.$dolitrace->productionplans($socid).'</td>
-						<td> </td>
-						<td>'.$dolitrace->plots_list($socid).'</td></tr>';
-			print "</table>";
+			
+			print '<div class="">';
+			print '<table class="centpercent notopnoleftnoright table-fiche-title">
+			          <tbody><tr class="titre">
+			                   <td class="nobordernopadding valignmiddle col-title"> <div class="titre inline-block">'.$langs->trans("Harvests").'</div></td>
+			                   <td class="nobordernopadding center valignmiddle"><a class="btnTitle" href="/dolibarr/custom/dolitrace/harvests.php" title="'.$langs->trans("SeeAll").'"><span class="fa fa-list-alt imgforviewmode valignmiddle btnTitle-icon"></span></a></td>
+			                   <td class="nobordernopadding titre_right wordbreakimp right valignmiddle"><a class="btnTitle btnTitlePlus" href="/dolibarr/custom/dolitrace/harvests_card.php?action=create&fk_farm='.$socid.'" title="'.$langs->trans("NewHarvest").'"><span class="fa fa-plus-circle valignmiddle btnTitle-icon"></span></a></td>
+			                   </tr>
+			          </tbody></table>';
+			print $dolitrace->harvests_list($socid);	
 			print '</div>';
 		}
 
-print '</div></div>';
+print '</div>';
 
 
 

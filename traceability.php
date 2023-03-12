@@ -159,7 +159,7 @@ print '<div class="div-table-responsive-no-min"><div class="fichecenter">';
 			print '<div class="div-table-responsive-no-min">';
 			print '<table class="noborder centpercent" >';	
 			print '<tr class="liste_titre"><th>'.$langs->trans("CropsPlan").'</th><th style=" background-color: white;border:0px;"></th><th>'.$langs->trans("Plots").'</th></tr>';
-			print '<tr><td width="50%">'.$dolitrace->productionplans($socid).'</td><td></td><td>'.$dolitrace->plots_list($socid).'</td></tr>';
+			print '<tr><td width="50%">'.$dolitrace->cropplans_list($socid).'</td><td></td><td>'.$dolitrace->plots_list($socid).'</td></tr>';
 			print "</table>";
 			print '</div>';
 		}

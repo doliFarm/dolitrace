@@ -190,4 +190,5 @@ HelpRefShipment=Inserire il riferimento di un documento di trasporto della racco
 ErrorProductionNull=Errore: non è possibile convalidare una produzione nulla
 FarmTraceability=Tracciabilità azienda
 GeneralInfo=Informazioni Generali
+FarmLogBook=Quaderno di Campagna
 

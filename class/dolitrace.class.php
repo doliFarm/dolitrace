@@ -70,14 +70,19 @@ class Dolitrace
 		$sql = "SELECT *";
 		$sql .= " FROM ".MAIN_DB_PREFIX."dolifarm_plots";
 		$sql .= " WHERE fk_farm = ".((int) $farm);
-		$html = '<div class=""><table width="100%">';
-		$html .= '<th>'.$langs->trans('Ref').'</th><th>'.$langs->trans('Label').'</th><th>'.$langs->trans('OrganicStatus').'</th>';
+		
+		$html  = '<div class="div-table-responsive-no-min">';
+		$html .= '<table class="centpercent noborder"><tbody>';
+		$html .= '<tr class="liste_titre">';
+		$html .= '<th class="wrapcolumntitle liste_titre">'.$langs->trans('Ref').'</th><th class="wrapcolumntitle liste_titre">'.$langs->trans('Label').'</th><th class="wrapcolumntitle liste_titre">'.$langs->trans('OrganicStatus').'</th>';
+        $html .= '</tr>';
+        
 		$result = $this->db->query($sql);
 		if ($result) {
 			$i=0;
 			while ($i < $this->db->num_rows($result)) {
 				$obj = $this->db->fetch_object($result);
-				$html .= "<tr>";
+				$html .= '<tr  class="oddeven">';
 				$html .= '<td><a href="'.DOL_URL_ROOT.'/custom/dolitrace/plots_card.php?id='.$farm.'">'.$obj->ref."</a></td>";
 				$html .= "<td>".$obj->label."</td>";
 				$html .= "<td>".$obj->def_organicstatus."</td>";
@@ -86,7 +91,7 @@ class Dolitrace
 				$i++;
 			}
 		}
-		$html .= "</table></div>";
+		$html .= "</tbody></table></div>";
         return $html;	
 
 	}
@@ -98,7 +103,7 @@ class Dolitrace
         return $html;	
 	}
 	
-	public function productionplans($farm, $plot = NULL)
+	public function cropplans_list($farm, $plot = NULL)
 	{
 		require_once DOL_DOCUMENT_ROOT.'/custom/dolitrace/class/cropplans.class.php';
 		global $langs;
@@ -106,15 +111,20 @@ class Dolitrace
 		$sql = "SELECT *";
 		$sql .= " FROM ".MAIN_DB_PREFIX."dolifarm_cropplans";
 		$sql .= " WHERE fk_farm = ".((int) $farm);
-		$html = '<div class=""><table width="100%">';
-		$html .= '<th>'.$langs->trans('Ref').'</th><th>'.$langs->trans('Label').'</th><th>'.$langs->trans('EndDate').'</th><th>'.$langs->trans('EndDate').'</th>';
 		$result = $this->db->query($sql);
+		
+		$html  = '<div class="div-table-responsive-no-min">';
+		$html .= '<table class="centpercent noborder"><tbody>';
+		$html .= '<tr class="liste_titre">';
+		$html .= '<th class="wrapcolumntitle liste_titre"> '.$langs->trans('Ref').'</th><th class="wrapcolumntitle liste_titre">'.$langs->trans('Label').'</th><th class="wrapcolumntitle liste_titre">'.$langs->trans('StartDate').'</th><th class="wrapcolumntitle liste_titre">'.$langs->trans('EndDate').'</th>';
+        $html .= '</tr>';
+
 		if ($result) {
 			$i=0;
 			while ($i < $this->db->num_rows($result)) {
 				$obj = $this->db->fetch_object($result);
-				$html .= "<tr>";
-				$html .= '<td><a href="'.DOL_URL_ROOT.'/custom/dolitrace/cropplans_card.php?id='.$farm.'">'.$obj->ref."</a></td>";
+				$html .= '<tr class="oddeven">';
+				$html .= '<td><a href="'.DOL_URL_ROOT.'/custom/dolitrace/cropplans_card.php?id='.$obj->rowid.'">'.$obj->ref."</a></td>";
 				$html .= "<td>".$obj->label."</td>";
 				$html .= "<td>".$obj->startdate."</td>";
 				$html .= "<td>".$obj->finishdate."</td>";
@@ -123,9 +133,44 @@ class Dolitrace
 				$i++;
 			}
 		}
-		$html .= "</table></div>";
+		$html .= "</tbody></table></div>";
         return $html;
 	}		
+	
+	public function harvests_list($farm, $plot = NULL)
+	{
+		require_once DOL_DOCUMENT_ROOT.'/custom/dolitrace/class/harvests.class.php';
+		global $langs;
+	
+		$sql = "SELECT *";
+		$sql .= " FROM ".MAIN_DB_PREFIX."dolifarm_harvests";
+		$sql .= " WHERE fk_farm = ".((int) $farm);
+		$result = $this->db->query($sql);
+		
+		$html  = '<div class="div-table-responsive-no-min">';
+		$html .= '<table class="centpercent noborder"><tbody>';
+		$html .= '<tr class="liste_titre">';
+		$html .= '<th class="wrapcolumntitle liste_titre"> '.$langs->trans('Ref').'</th><th class="wrapcolumntitle liste_titre">'.$langs->trans('Label').'</th><th class="wrapcolumntitle liste_titre">'.$langs->trans('Date').'</th><th class="wrapcolumntitle liste_titre">'.$langs->trans('Tracecode').'</th>';
+        $html .= '</tr>';
+
+		if ($result) {
+			$i=0;
+			while ($i < $this->db->num_rows($result)) {
+				$obj = $this->db->fetch_object($result);
+				$html .= '<tr class="oddeven">';
+				$html .= '<td><a href="'.DOL_URL_ROOT.'/custom/dolitrace/harvests_card.php?id='.$farm.'">'.$obj->ref."</a></td>";
+				$html .= "<td>".$obj->label."</td>";
+				$html .= "<td>".$obj->date."</td>";
+				$html .= "<td>".$obj->tracecode."</td>";
+
+				$html .= "<tr>";
+				$i++;
+			}
+		}
+		$html .= "</tbody></table></div>";
+        return $html;
+	}		
+	
 	
 	public function isfarm($societe,$tcode='TE_FARM'){
 		global $db;
