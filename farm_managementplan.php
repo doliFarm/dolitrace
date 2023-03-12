@@ -20,7 +20,7 @@
  */
 
 /**
- *	\file       dolitrace/farm_traceability.php
+ *	\file       dolitrace/farm_managementplan.php
  *	\ingroup    dolitrace
  *	\brief      Home page of dolitrace top menu
  */
@@ -83,7 +83,9 @@ $form = new Form($db);
 $formfile = new FormFile($db);
 $dolitrace = new Dolitrace($db);
 $soc = new Societe($db);
-
+$extrafields = new ExtraFields($db);
+// Fetch optionals attributes and labels
+$extrafields->fetch_name_optionals_label($soc->table_element);
 
 /*
  * Actions
@@ -112,8 +114,9 @@ llxHeader("", $langs->trans("DoliTraceArea"));
 // print load_fiche_titre($langs->trans("DoliTraceArea"), '', 'dolitrace.png@dolitrace');
 
 $soc->fetch($socid);
+
 $head = societe_prepare_head($soc);
-print dol_get_fiche_head($head, 'farmlogbook', $langs->trans("ThirdParty"), 0, 'company');
+print dol_get_fiche_head($head, 'farmmanagmentplan', $langs->trans("ThirdParty"), 0, 'company');
 
 dol_banner_tab($soc, 'socid', $linkback, ($user->socid ? 0 : 1), 'rowid', 'nom');
 
@@ -122,38 +125,7 @@ print '<div class="fichecenter">';
         
 		if ($socid > 0) {    
 			
-			print '<div class="div-table-responsive-no-min">';
-			print '<table class="centpercent notopnoleftnoright table-fiche-title">
-			          <tbody><tr class="titre ">
-			                   <td class="nobordernopadding valignmiddle col-title"> <div class="titre inline-block">'.$langs->trans("CropsPlan").'</div></td>
-			                   <td class="nobordernopadding center valignmiddle"><a class="btnTitle" href="/dolibarr/custom/dolitrace/cropplans.php" title="'.$langs->trans("SeeAll").'"><span class="fa fa-list-alt imgforviewmode valignmiddle btnTitle-icon"></span></a></td>
-			                   <td class="nobordernopadding titre_right wordbreakimp right valignmiddle"><a class="btnTitle btnTitlePlus" href="/dolibarr/custom/dolitrace/cropplans_card.php?action=create&fk_farm='.$socid.'" title="'.$langs->trans("NewPlot").'"><span class="fa fa-plus-circle valignmiddle btnTitle-icon"></span></a></td>
-			                   </tr>
-			          </tbody></table>';
-			print $dolitrace->cropplans_list($socid);	
-			print '</div>';
-					
-			print '<div class="">';
-			print '<table class="centpercent notopnoleftnoright table-fiche-title">
-			          <tbody><tr class="titre">
-			                   <td class="nobordernopadding valignmiddle col-title"> <div class="titre inline-block">'.$langs->trans("Plots").'</div></td>
-			                   <td class="nobordernopadding center valignmiddle"><a class="btnTitle" href="/dolibarr/custom/dolitrace/cropplans.php" title="'.$langs->trans("SeeAll").'"><span class="fa fa-list-alt imgforviewmode valignmiddle btnTitle-icon"></span></a></td>
-			                   <td class="nobordernopadding titre_right wordbreakimp right valignmiddle"><a class="btnTitle btnTitlePlus" href="/dolibarr/custom/dolitrace/plots_card.php?action=create&fk_farm='.$socid.'" title="'.$langs->trans("NewPlot").'"><span class="fa fa-plus-circle valignmiddle btnTitle-icon"></span></a></td>
-			                   </tr>
-			          </tbody></table>';
-			print $dolitrace->plots_list($socid);	
-			print '</div>';
-			
-			print '<div class="">';
-			print '<table class="centpercent notopnoleftnoright table-fiche-title">
-			          <tbody><tr class="titre">
-			                   <td class="nobordernopadding valignmiddle col-title"> <div class="titre inline-block">'.$langs->trans("Harvests").'</div></td>
-			                   <td class="nobordernopadding center valignmiddle"><a class="btnTitle" href="/dolibarr/custom/dolitrace/harvests.php" title="'.$langs->trans("SeeAll").'"><span class="fa fa-list-alt imgforviewmode valignmiddle btnTitle-icon"></span></a></td>
-			                   <td class="nobordernopadding titre_right wordbreakimp right valignmiddle"><a class="btnTitle btnTitlePlus" href="/dolibarr/custom/dolitrace/harvests_card.php?action=create&fk_farm='.$socid.'" title="'.$langs->trans("NewHarvest").'"><span class="fa fa-plus-circle valignmiddle btnTitle-icon"></span></a></td>
-			                   </tr>
-			          </tbody></table>';
-			print $dolitrace->harvests_list($socid);	
-			print '</div>';
+			print $soc->array_options["options_description"];
 		}
 
 print '</div>';

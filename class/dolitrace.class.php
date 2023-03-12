@@ -259,12 +259,46 @@ class Dolitrace
 	*/   
 	public function traceprod($tracecode,$output='0')
 	{
-		$traceabilty["FarmInfo"]["id"] = 1999;
-		$traceabilty["PlotInfo"]["id"] = 2999;
-		$traceabilty["HarvestInfo"]["id"]= 3999;
-		$traceabilty["CropInfo"]["id"]= 4999;
-
 		
+		require_once DOL_DOCUMENT_ROOT.'/custom/dolitrace/class/harvests.class.php';
+		require_once DOL_DOCUMENT_ROOT.'/custom/dolitrace/class/plots.class.php';
+		require_once DOL_DOCUMENT_ROOT.'/custom/dolitrace/class/cropplans.class.php';
+		require_once DOL_DOCUMENT_ROOT.'/custom/dolitrace/class/crops.class.php';
+
+
+		global $langs, $db;
+	
+		$sql = "SELECT *";
+		$sql .= " FROM ".MAIN_DB_PREFIX."dolifarm_harvests";
+		$sql .= " WHERE tracecode = ".((int) $tracecode);
+		$result = $this->db->query($sql);
+		
+		if ($result) {  // I am supposing here that we have univoque tracecode
+			$harv = $this->db->fetch_object($result);
+			
+		    $harvest = New Harvests($db);
+			$harvest->fetch($harv->rowid);
+		    
+			$soc = New Societe($db);
+			$soc->fetch($harvest->fk_farm);
+			
+			$cropplan = New Cropplans($db);
+			$cropplan->fetch($harvest->fk_cropplan);
+			
+			$crop = New Crops($db);
+			$crop->fetch($harvest->fk_product);
+			
+			$plot = New Plots($db);
+			$plot->fetch($cropplan->fk_plot);
+			
+			
+			
+			$traceabilty["FarmInfo"]["id"] = $soc->nom;
+			$traceabilty["PlotInfo"]["id"] = $plot->getNomUrl();
+			$traceabilty["HarvestInfo"]["id"]= $harvest->getNomUrl();
+			$traceabilty["CropInfo"]["id"]= $crop->label;
+		}
+	
         return $traceabilty;
 	}
 	

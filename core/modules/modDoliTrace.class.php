@@ -342,7 +342,9 @@ class modDoliTrace extends DolibarrModules
 		}
 		// LG TODO(3) Activate TAB only if it is a company
 		$this->tabs = array();
-		$this->tabs[] = array('data'=>'thirdparty:+dolitrace:FarmLogBook:dolitrace@dolitrace:$conf->dolitrace->enabled:/custom/dolitrace/farm_traceability.php?action=searchFarm&origin=societe&mainmenu=dolifarm&leftmenu=&socid=__ID__');  					// To add a new tab identified by code tabname1
+		$this->tabs[] = array('data'=>'thirdparty:+farmlogbook:FarmLogBook:dolitrace@dolitrace:$conf->dolitrace->enabled:/custom/dolitrace/farm_traceability.php?action=searchFarm&origin=societe&mainmenu=dolifarm&leftmenu=&socid=__ID__');  					// To add a new tab identified by code tabname1
+		$this->tabs[] = array('data'=>'thirdparty:+farmmanagmentplan:ManagementPlan:dolitrace@dolitrace:$conf->dolitrace->enabled:/custom/dolitrace/farm_managementplan.php?origin=societe&mainmenu=dolifarm&leftmenu=&socid=__ID__');  					// To add a new tab identified by code tabname1
+
 		// Example:
 
 		// $this->tabs[] = array('data'=>'objecttype:+tabname1:Title1:mylangfile@dolitrace:$user->rights->dolitrace->read:/dolitrace/mynewtab1.php?id=__ID__');  					// To add a new tab identified by code tabname1
