@@ -1,106 +1,194 @@
-# Copyright (C) 2022 Alice Adminson <aadminson@example.com>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-#
-# Generic
-#
-
-# Module label 'ModuleDoliTraceName'
-ModuleDoliTraceName = DoliTrace
-# Module description 'ModuleDoliTraceDesc'
-ModuleDoliTraceDesc = DoliTrace description
-
-#
-# Admin page
-#
-DoliTraceSetup = DoliTrace setup
-Settings = Settings
-DoliTraceSetupPage = DoliTrace setup page
-DOLITRACE_MYPARAM1 = My param 1
-DOLITRACE_MYPARAM1Tooltip = My param 1 tooltip
+# Copyright (C) 2022 Alice Adminson <aadminson@example.com>=
+#=
+# This program is free software: you can redistribute it and/or modify=
+# it under the terms of the GNU General Public License as published by=
+# the Free Software Foundation, either version 3 of the License, or=
+# (at your option) any later version.=
+#=
+# This program is distributed in the hope that it will be useful,=
+# but WITHOUT ANY WARRANTY; without even the implied warranty of=
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the=
+# GNU General Public License for more details.=
+#=
+# You should have received a copy of the GNU General Public License=
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.=
+=
+#=
+# Generic=
+#=
+=
+# Module label 'ModuleDoliTraceName'=
+ModuleDoliTraceName=DoliTrace
+# Module description 'ModuleDoliTraceDesc'=
+ModuleDoliTraceDesc=DoliTrace is a module of the doliFarm Suite. It allows the management of plots, production plans and harvests. Each harvest is assigned a traceability code that will follow the product through all its stages until it is sold.
+=
+#=
+# Admin page=
+#=
+DoliTraceSetup=DoliTrace setup
+Settings=Settings
+DoliTraceSetupPage=DoliTrace setup page
+DOLITRACE_MYPARAM1=My param 1
+DOLITRACE_MYPARAM1Tooltip=My param 1 tooltip
 DOLITRACE_MYPARAM2=My param 2
 DOLITRACE_MYPARAM2Tooltip=My param 2 tooltip
-DOLITRACE_SIMPLIFIED=Traceability simplified
-DOLITRACE_SIMPLIFIEDTooltip=The operations on the fields is not taken in account
-
-#
-# About page
-#
-About = About
-DoliTraceAbout = About DoliTrace
-DoliTraceAboutPage = DoliTrace about page
-
-#
-# Sample page
-#
-MyPageName = My page name
-
-#
-# Sample widget
-#
-MyWidget = My widget
-MyWidgetDescription = My widget description
-
-
-
-# CUstom
-
-
-# Custom
-DoliFarmAreaDashboard = Dashboard doliFARM
-Farms = Aziende
-Farm = Azienda
-doliTRACE = Tracciabilità
-DoliTraceArea = Tracciabilità
-Plot = Plot
-Plots = Plots
-Coltures = Colture
-Colture = Coltura
-Dashboard = Pannello di controllo
-FarmsNetwork = Elenco Aziende
-NewPlots = Nuovi Appezzamenti
-ProductionsPlans = Piano di produzione
-Traceability = Tracciamento lotto
-doliCERT = Registri BIO
-Workbook = Quaderno di campagna
-ComplaintsManagement = Reclami
-SalesRegister = Vendite
-PurchaseRegister = Acquisti
-RawMaterials = Materie prime
-doliLOGISTIC = Logistica
-CMRGenerator = CMR 
-PricesListGenerator = Listini
-PallettLoadSimulationTool = Simulatore di carico
-doliCOMMERCE = eCommerce
-PlotsList = Lista appezzamenti
-NewPlot = Nuovo appezzamento
-ProductionPlan = Piano di produzione
-SuppliersList = Registro fornitori
-SupplierList = Fornitori
-CompliantsManagement = Registro Reclami
-SalesRgister = Registro Vendite
-PurchasesRegister = Registro Acquisti
-RawMaterials = Registro Materie Prime
-LastCollectings = Ultime Raccolte
-LastFarms = Last Farm
-LastPlantings = Ultimi impianti
-LastDDT = Ultimi DDT
-ListOfPrices = Listini
-CropsPlan=Crops Plan
-CropPlan=Crop Plan
-NewCropPlan=Nuovo Piano di Produzione
-Harvests=Harvests
+DOLITRACE_SIMPLIFIED=Simplified traceability
+DOLITRACE_SIMPLIFIEDTooltip=Simplified traceability does not take campaign operations into account
+DOLITRACE_COSTS_MANAGEMENT=Cost management
+DOLITRACE_COSTS_MANAGEMENTTooltip=The possibility of keeping track of the costs of a production plan is activated
+DOLITRACE_ORDER_SUPPLIER=Create Vendor Order at Harvest
+DOLITRACE_ORDER_SUPPLIERTooltip=If activated, a supplier order is automatically created when the harvest is validated
+DOLITRACE_NEWPRODUCT=Create new product at harvest
+DOLITRACE_NEWPRODUCTTooltip=If activated a new product will be created for the approved collection
+DOLITRACE_NEWPROJECT=Create new project for the production plan
+DOLITRACE_NEWPROJECTTooltip=If activated it creates a new project for the production plan
+=
+#=
+# About page=
+#=
+About=About
+DoliTraceAbout=About DoliTrace
+DoliTraceAboutPage=DoliTrace about page
+=
+#=
+# Sample page=
+#=
+MyPageName=My page name
+=
+#=
+# Sample widget=
+#=
+MyWidget=My widget
+MyWidgetDescription=My widget description
+=
+=
+# Custom=
+DoliFarmAreaDashboard=doliFARM Dashboard
+Farms=Farms
+Farm=Farm
+doliTRACE=Traceability
+DoliTraceArea=Traceability
+Plot=Plot
+Plots=Plots
+Crops=Crops
+Crop=Crop
+PlotName=Plot Name
+CropPlanName=Production Plan Name
+Dashboard=Control Panel
+FarmsNetwork=Farms List
+NewPlots=New Plots
+ProductionsPlans=Production Plan
+Traceability=Plot Tracking
+Workbook=Field Notebook
+ComplaintsManagement=Complaints
+SalesRegister=Sales
+PurchaseRegister=Purchases
+RawMaterials=Raw materials
+doliLOGISTIC=Logistics
+CMRGenerator=CMR
+PricesListGenerator=Price lists
+PallettLoadSimulationTool=Load Simulator
+doliCOMMERCE=eCommerce
+PlotsList=Plot list
+NewPlot=New plot
+ProductionPlan=Production Plan
+SuppliersList=Supplier Register
+SupplierList=Suppliers
+CompliantsManagement=Complaints register
+SalesRgister=Sales register
+PurchasesRegister=Purchase Register
+RawMaterials=Raw materials register
+LastCollectings=Latest Collections
+LastFarms=Companies
+LastPlantings=Latest Plants
+LastDDT=Latest Bills of Lading
+ListOfPrices=Price lists
+CropsPlan=Production Plans
+CropPlan=Production Plan
+NewCropPlan=New Production Plan
+Harvests=Collections
 Harvest=Harvest
+HarvestName=Harvest Name
 NewHarvest=New Harvest
+Operations=Cultural Operations
+NewOperation=New Cultural Ops
+Tracecode=Code Trace:
+BodyCA=Control body
+LicenseNumber=Licence number
+FarmTraceCode=Company Code
+CertificationExpirationDate=Certificate expiry date
+Agronomist=Agronomist
+Agronomists=Agronomists
+ListOfFarms=List of Farms
+RefCropPlan=Reference
+CropType=Crop
+StartDate=Start
+FinishDate=End
+EstimatedYield=Estimated production (kg)
+EstimatedQuantityBoxes=Estimated quantity (crates)
+YieldToDate=Current production (kg)
+RefHarvest=Reference Harvest
+Yield=Production (kg)
+QuantityBoxes=Quantity (crates)
+TraceCode=Traceability code
+CostMaterial=Material cost
+CostManpower=Labour cost
+CostEnergy=Energy cost
+MapReference=Map reference
+OrganicStatus=Cert. status BIO
+ConversionStart=Start conversion
+ConversionEnd=End conversion
+ActualCost=Current cost
+FarmInfo=Company information
+FarmName=Company Name
+CertificatesList=Certificate List
+RefPlot=Plot ref.
+FarmInfo=Company information
+FarmName=Company name
+LicenseNumber=Licence number
+FarmTraceCode=Company traceability code
+CertificateExpirationDate=Certificate expiry date
+Agronomist=Agronomist
+EndDate=End
+EndDate=Start
+DateHarvest=Harvest date
+OrganicStatus=BIO Status
+Certified=Certificate
+Conventional=Conventional
+Uknown=Unknown
+Conversion=In conversion
+NoCropPlans=No Production Plans present
+NoHarvests=No Harvests Present
+NoPlots=No Plots are present
+PlotToBeValidated=Need to validate plot sheet
+NewTreatment=New Treatment
+DeleteCropPlans=Delete Production Plan
+PrintLabelHarvest=Print label
+OrderSupplier=Supplier Order
+OnStock=Stock loading
+ManifacturingOrder=Processing Order
+CropPlansToBeValidated=Production Plan to be validated
+PlotSize=Size (Ha)
+=
+doliCERT=BIO Certification & Registers
+NewPlot=New Plot
+NewCroplan=New Production Plan
+NewFarm=New Farm
+NewProductionOrder=New Production Order
+ProductionsPlans=Production Plan
+Traceability=Lot Tracking
+Certificates=Certificates
+RefShipment=Transport document ref.
+=
+HelpLabelCropPlan=It is a generic name that refers to the production plan. In all cases, the system will assign a unique label to the production plan. 
+HelpPlotLabel=It is a generic name referring to the plot of land. In all cases the system will assign the plot a unique label.
+HelpMapReference=Enter a geographical reference (GPS, address, etc.)
+HelpSize=Enter the size of the plot
+HelpCertStatus=Enter the status of the plot according to organic certification
+HelpRefShipment=Enter the reference of a harvest transport document
+=
+ErrorProductionNull=Error: null production cannot be validated
+FarmTraceability=Farm traceability
+GeneralInfo=General information
+FarmLogBook=Field Notebook
+ManagementPlan=Management Plan
