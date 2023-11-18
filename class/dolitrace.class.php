@@ -368,7 +368,7 @@ class Dolitrace
 	 */
 	public function generate_ordersupplier($fk_farm = '')
 	{
-		$code = dol_now();
+		$code = random_int ( 9999  , 99999) ; // dol_now();
 		return $code;
 	}
 	
