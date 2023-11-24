@@ -126,8 +126,8 @@ print '<div class="fichecenter">';
 			print '<table class="centpercent notopnoleftnoright table-fiche-title">
 			          <tbody><tr class="titre ">
 			                   <td class="nobordernopadding valignmiddle col-title"> <div class="titre inline-block">'.$langs->trans("CropsPlan").'</div></td>
-			                   <td class="nobordernopadding center valignmiddle"><a class="btnTitle" href="/dolibarr/custom/dolitrace/cropplans.php" title="'.$langs->trans("SeeAll").'"><span class="fa fa-list-alt imgforviewmode valignmiddle btnTitle-icon"></span></a></td>
-			                   <td class="nobordernopadding titre_right wordbreakimp right valignmiddle"><a class="btnTitle btnTitlePlus" href="/dolibarr/custom/dolitrace/cropplans_card.php?action=create&fk_farm='.$socid.'" title="'.$langs->trans("NewPlot").'"><span class="fa fa-plus-circle valignmiddle btnTitle-icon"></span></a></td>
+			                   <td class="nobordernopadding center valignmiddle"><a class="btnTitle" href="'.DOL_URL_ROOT.'/custom/dolitrace/cropplans.php" title="'.$langs->trans("SeeAll").'"><span class="fa fa-list-alt imgforviewmode valignmiddle btnTitle-icon"></span></a></td>
+			                   <td class="nobordernopadding titre_right wordbreakimp right valignmiddle"><a class="btnTitle btnTitlePlus" href="'.DOL_URL_ROOT.'/custom/dolitrace/cropplans_card.php?action=create&fk_farm='.$socid.'" title="'.$langs->trans("NewPlot").'"><span class="fa fa-plus-circle valignmiddle btnTitle-icon"></span></a></td>
 			                   </tr>
 			          </tbody></table>';
 			print $dolitrace->cropplans_list($socid);	
@@ -137,8 +137,8 @@ print '<div class="fichecenter">';
 			print '<table class="centpercent notopnoleftnoright table-fiche-title">
 			          <tbody><tr class="titre">
 			                   <td class="nobordernopadding valignmiddle col-title"> <div class="titre inline-block">'.$langs->trans("Plots").'</div></td>
-			                   <td class="nobordernopadding center valignmiddle"><a class="btnTitle" href="/dolibarr/custom/dolitrace/cropplans.php" title="'.$langs->trans("SeeAll").'"><span class="fa fa-list-alt imgforviewmode valignmiddle btnTitle-icon"></span></a></td>
-			                   <td class="nobordernopadding titre_right wordbreakimp right valignmiddle"><a class="btnTitle btnTitlePlus" href="/dolibarr/custom/dolitrace/plots_card.php?action=create&fk_farm='.$socid.'" title="'.$langs->trans("NewPlot").'"><span class="fa fa-plus-circle valignmiddle btnTitle-icon"></span></a></td>
+			                   <td class="nobordernopadding center valignmiddle"><a class="btnTitle" href="'.DOL_URL_ROOT.'/custom/dolitrace/cropplans.php" title="'.$langs->trans("SeeAll").'"><span class="fa fa-list-alt imgforviewmode valignmiddle btnTitle-icon"></span></a></td>
+			                   <td class="nobordernopadding titre_right wordbreakimp right valignmiddle"><a class="btnTitle btnTitlePlus" href="'.DOL_URL_ROOT.'/custom/dolitrace/plots_card.php?action=create&fk_farm='.$socid.'" title="'.$langs->trans("NewPlot").'"><span class="fa fa-plus-circle valignmiddle btnTitle-icon"></span></a></td>
 			                   </tr>
 			          </tbody></table>';
 			print $dolitrace->plots_list($socid);	
@@ -148,8 +148,8 @@ print '<div class="fichecenter">';
 			print '<table class="centpercent notopnoleftnoright table-fiche-title">
 			          <tbody><tr class="titre">
 			                   <td class="nobordernopadding valignmiddle col-title"> <div class="titre inline-block">'.$langs->trans("Harvests").'</div></td>
-			                   <td class="nobordernopadding center valignmiddle"><a class="btnTitle" href="/dolibarr/custom/dolitrace/harvests.php" title="'.$langs->trans("SeeAll").'"><span class="fa fa-list-alt imgforviewmode valignmiddle btnTitle-icon"></span></a></td>
-			                   <td class="nobordernopadding titre_right wordbreakimp right valignmiddle"><a class="btnTitle btnTitlePlus" href="/dolibarr/custom/dolitrace/harvests_card.php?action=create&fk_farm='.$socid.'" title="'.$langs->trans("NewHarvest").'"><span class="fa fa-plus-circle valignmiddle btnTitle-icon"></span></a></td>
+			                   <td class="nobordernopadding center valignmiddle"><a class="btnTitle" href="'.DOL_URL_ROOT.'/custom/dolitrace/harvests.php" title="'.$langs->trans("SeeAll").'"><span class="fa fa-list-alt imgforviewmode valignmiddle btnTitle-icon"></span></a></td>
+			                   <td class="nobordernopadding titre_right wordbreakimp right valignmiddle"><a class="btnTitle btnTitlePlus" href="'.DOL_URL_ROOT.'/custom/dolitrace/harvests_card.php?action=create&fk_farm='.$socid.'" title="'.$langs->trans("NewHarvest").'"><span class="fa fa-plus-circle valignmiddle btnTitle-icon"></span></a></td>
 			                   </tr>
 			          </tbody></table>';
 			print $dolitrace->harvests_list($socid);	
