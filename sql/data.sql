@@ -420,7 +420,7 @@ INSERT INTO `llx_dolifarm_crops` (`rowid`, `code`, `crop`, `latingenus`, `localn
 (582, 'MELENZANA', 'Melenzana', NULL, NULL, 'Solanaceae', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'it_IT', '2023-02-18 11:07:40', NULL, NULL, NULL, NULL),
 (583, 'ZUCCA-M', 'Zucca / Moscato di Provenza', NULL, NULL, 'Cucurbitacee', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'it_IT', '2023-02-18 11:07:40', NULL, NULL, NULL, NULL),
 (584, 'ZUCCA-B', 'Zucca / Butternut', NULL, NULL, 'Cucurbitacee', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'it_IT', '2023-02-18 11:07:40', NULL, NULL, NULL, NULL),
-(585, 'CEDRO', 'Cedro / Spatafora', NULL, NULL, 'Pinaceae', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'it_IT', '2023-02-18 11:07:40', NULL, NULL, NULL, NULL),
+(585, 'CEDRO', 'Cedro', NULL, NULL, 'Pinaceae', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'it_IT', '2023-02-18 11:07:40', NULL, NULL, NULL, NULL),
 (586, 'MANDARINOSIM-P', 'Mandarino simili / Primosole', NULL, NULL, 'Rutacee', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'it_IT', '2023-02-18 11:07:40', NULL, NULL, NULL, NULL),
 (587, 'MANDARINOSIM-C', 'Mandarino simili / Cami', NULL, NULL, 'Rutacee', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'it_IT', '2023-02-18 11:07:40', NULL, NULL, NULL, NULL),
 (588, 'CLEMENTINE-H', 'Clementine / HERNANDINA', NULL, NULL, 'Rutacee', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'it_IT', '2023-02-18 11:07:40', NULL, NULL, NULL, NULL),
@@ -431,4 +431,6 @@ INSERT INTO `llx_dolifarm_crops` (`rowid`, `code`, `crop`, `latingenus`, `localn
 (593, 'ORANGE-TG', 'Arancia / Tarocco / GALLO', NULL, NULL, 'Rutaceae', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'it_IT', '2023-02-18 11:07:40', NULL, NULL, NULL, NULL),
 (594, 'ORANGE-TT', 'Arancia / Tarocco / TDV', NULL, NULL, 'Rutaceae', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'it_IT', '2023-02-18 11:07:40', NULL, NULL, NULL, NULL),
 (595, 'ORANGE-TR', 'Arancia / Tarocco / ROSSO VCR', NULL, NULL, 'Rutaceae', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'it_IT', '2023-02-18 11:07:40', NULL, NULL, NULL, NULL),
-(596, 'ORANGE-NH', 'Arancia / NEW HALL', NULL, NULL, 'Rutaceae', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'it_IT', '2023-02-18 11:07:40', NULL, NULL, NULL, NULL);
+(596, 'ORANGE-NH', 'Arancia / NEW HALL', NULL, NULL, 'Rutaceae', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'it_IT', '2023-02-18 11:07:40', NULL, NULL, NULL, NULL),
+(588, 'CEDRO-S', 'Cedro / Spatafora', NULL, NULL, 'Pinaceae', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'it_IT', '2023-02-18 11:07:40', NULL, NULL, NULL, NULL),
+(589, 'CEDRO-D', 'Cedro / Diamante', NULL, NULL, 'Pinaceae', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'it_IT', '2023-02-18 11:07:40', NULL, NULL, NULL, NULL);
