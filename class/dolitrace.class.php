@@ -23,7 +23,7 @@
 
     require_once DOL_DOCUMENT_ROOT.'/categories/class/categorie.class.php';
 
-
+    require_once DOL_DOCUMENT_ROOT.'/core/lib/functions.lib.php';
 
 class Dolitrace
 
@@ -85,8 +85,8 @@ class Dolitrace
 				$html .= '<tr  class="oddeven">';
 				$html .= '<td><a href="'.DOL_URL_ROOT.'/custom/dolitrace/plots_card.php?id='.$farm.'">'.$obj->ref."</a></td>";
 				$html .= "<td>".$obj->label."</td>";
-				$html .= "<td>".$obj->def_organicstatus."</td>";
-
+				// $html .= "<td>".$obj->def_organicstatus."</td>";
+				$html .= "<td>".$langs->trans(getDictionaryValue(MAIN_DB_PREFIX."dolifarm_dictionary",'label',$obj->def_organicstatus))."</td>";
 				$html .= "<tr>";
 				$i++;
 			}
@@ -356,7 +356,7 @@ class Dolitrace
 	 */
 	public function generate_tracecode($fk_farm = '')
 	{
-		$code = dol_now();
+		$code = random_int ( 9999  , 99999) ; // dol_now();
 		return $code;
 	}
 	
@@ -368,7 +368,7 @@ class Dolitrace
 	 */
 	public function generate_ordersupplier($fk_farm = '')
 	{
-		$code = random_int ( 9999  , 99999) ; // dol_now();
+		$code = dol_now();
 		return $code;
 	}
 	
