@@ -325,9 +325,12 @@ class pdf_standard_harvests extends ModelePDFHarvests
 				
 				$pdf->startTransaction();
 
-				$pdf->SetFont('', '', $default_font_size - 1);
+				$pdf->SetFont('', '', $default_font_size +10);
 
-				$pdf->writeHTMLCell(190, 3, $this->posxdesc - 1, $tab_top, dol_htmlentitiesbr("this is just a test of tracecode label. Try to scan this QR code"), 0, 1);
+				$pdf->Text(55, $tab_top -10, 'A g r i n o v a   B i o    2 0 0 0');
+				
+				$pdf->SetFont('', '', $default_font_size - 1);
+				
 				$tab_top += 10;
 				
 				// set style for barcode
@@ -342,8 +345,13 @@ class pdf_standard_harvests extends ModelePDFHarvests
 				);
 
 				// QRCODE,L : QR-CODE Low error correction
-				$pdf->write2DBarcode($object->tracecode, 'QRCODE,L', 20, 30, 50, 50, $style, 'N');
-				$pdf->Text(20, 25, 'Codice Tracciabilità Raccolta Ref.: '.$object->ref);
+				$pdf->Text(78, $tab_top, 'Codice Tracciabilità: '.$object->tracecode);
+				$tab_top +=5;
+				$pdf->Text(67, $tab_top, 'Riferimento Raccolta: '.$object->ref);
+				$tab_top +=7;
+				$pdf->write2DBarcode('http://www.agrinovabio2000.it/trace='.$object->tracecode, 'QRCODE,L', 75, $tab_top, 50, 50, $style, 'N');
+				$tab_top +=55;
+				$pdf->writeHTMLCell($tab_top, 25, $this->posxdesc +43, $tab_top, dol_htmlentitiesbr("Per maggiori informazioni visita http://www.agrinovabio2000.it"), 0, 1);
 				
 				$pdf->Close();
 				$pdf->Output($file, 'F');
