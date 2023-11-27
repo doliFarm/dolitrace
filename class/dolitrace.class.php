@@ -291,12 +291,12 @@ class Dolitrace
 			$plot = New Plots($db);
 			$plot->fetch($cropplan->fk_plot);
 			
-			
-			
 			$traceabilty["FarmInfo"]["id"] = $soc->nom;
+			$traceabilty["FarmId"]["id"]= $soc->id;
 			$traceabilty["PlotInfo"]["id"] = $plot->getNomUrl();
 			$traceabilty["HarvestInfo"]["id"]= $harvest->getNomUrl();
 			$traceabilty["CropInfo"]["id"]= $crop->label;
+			$traceabilty["FarmRowId"]["id"]= $crop->label;
 		}
 	
         return $traceabilty;
