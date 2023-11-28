@@ -211,8 +211,9 @@ class Dolitrace
 				$extrafields = new ExtraFields($db);
 				if (!empty($societe->id)) {
 					$res = $societe->fetch_optionals();
-				}
-				
+				}		
+				// $extralabels=$extrafields->fetch_name_optionals_label($societe->table_element);
+				// print_r($extralabels);
 				$html = '<div class="">';
 				// 	Farm Ref
 					$html .= '<tr><td>';
@@ -226,30 +227,34 @@ class Dolitrace
 					$html .= '</td>';
 					$html .= '</tr>';
 				}
-				// 	BodyCA
+				// 	BodyCA $societe->array_options['options_bodyca']; // .
 					$html .= '<tr><td>';
-					$html .= $langs->trans('BodyCA').'</td><td>'.$societe->array_options['options_bodyca']; // .$extrafields->showOutputField('options_bodyca',$societe->array_options['options_bodyca']);
+					$html .= $langs->trans('BodyCA').'</td><td>'.$societe->array_options['options_bodyca'].$extrafields->showInputField($societe->array_options['options_bodyca'],'options_bodyca');
 					$html .= '</tr>';
 				// LicenseNumber
 					$html .= '<tr><td>';
 					$html .= $langs->trans('LicenseNumber').'</td><td>'.$societe->array_options['options_licensenumber'];
 					$html .= '</td>';
 					$html .= '</tr>';
-				// FarmTraceCode
+				// FarmTraceCode 
+				   /*
 					$html .= '<tr><td>';
 					$html .= $langs->trans('FarmTraceCode').'</td><td>'.$societe->array_options['options_farmtracecode'];
 					$html .= '</td>';
 					$html .= '</tr>';
+					*/
 				// CertificateExpirationData
 					$html .= '<tr><td>';
-					$html .= $langs->trans('CertificateExpirationData').'</td><td>'.$societe->array_options['options_certificateexpirationdata'];
+					$html .= $langs->trans('CertificationExpirationDate').'</td><td>'.dol_print_date($societe->array_options['options_certificateexpirationdate']);
 					$html .= '</td>';
 					$html .= '</tr>';
 				// Agronomist
+				/*
 					$html .= '<tr><td>';
 					$html .= $langs->trans('Agronomist').'</td><td>'.$societe->array_options['options_agronomist'];
 					$html .= '</td>';
 					$html .= '</tr>';
+					* */
 				$html .= "</div>";
 		}
 		
@@ -294,9 +299,14 @@ class Dolitrace
 			$traceabilty["FarmInfo"]["id"] = $soc->nom;
 			$traceabilty["FarmId"]["id"]= $soc->id;
 			$traceabilty["PlotInfo"]["id"] = $plot->getNomUrl();
+			$traceabilty["PlotSize"]["id"] = $plot->size;
 			$traceabilty["HarvestInfo"]["id"]= $harvest->getNomUrl();
-			$traceabilty["CropInfo"]["id"]= $crop->label;
-			$traceabilty["FarmRowId"]["id"]= $crop->label;
+			$traceabilty["CropplanInfo"]["id"]= $cropplan->getNomUrl();
+			$traceabilty["CropplanEstimatedqty"]["id"]= $cropplan->estimatedyield;
+			$traceabilty["CropInfo"]["id"]= $harvest->label;
+			$traceabilty["HarvestQty"]["id"]= $harvest->yield;
+			$traceabilty["HarvestDate"]["id"]= $harvest->date;
+			//print_r($cropplan);
 		}
 	
         return $traceabilty;

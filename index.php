@@ -130,9 +130,13 @@ print '<div class="div-table-responsive-no-min"><div class="fichecenter">';
 			print '<div class="fichesecondleft">';
 			print '<div class="div-table-responsive-no-min">';
 			print '<table class="noborder centpercent">';	
-			print '<tr class="liste_titre"><th>'.$langs->trans("ProductTrace").'<br>'.$trace["CropInfo"]["id"].'</th><th>'.$langs->trans("TraceCode").': '.$tracecode.'</th></tr>';
-			print '<tr class="liste_titre"><th>'.$langs->trans("HarvestInfo").'</th><th>'.$langs->trans("PlotsInfo").'</th></tr>';
-			print '<tr ><td>'.$trace["HarvestInfo"]["id"].'</td><td>'.$trace["PlotInfo"]["id"].'</td></tr>';
+			print '<tr class="liste_titre"><th>'.$langs->trans("ProductTrace").': <b>'.$trace["CropInfo"]["id"].'</b></th><th>'.$langs->trans("TraceCode").': <b>'.$tracecode.'</b></th><th></th></tr>';
+			print '<tr class="liste_titre"><th>'.$langs->trans("HarvestInfo").'</th><th>'.$langs->trans("PlotsInfo").'</th><th>'.$langs->trans("CropplanInfo").'</th></tr>';
+			print '<tr ><td>'.$trace["HarvestInfo"]["id"].'<br>'.$langs->trans("HarvestDate").': '.dol_print_date($trace["HarvestDate"]["id"]).'<br>'.$langs->trans("HarvestQty").': '.$trace["HarvestQty"]["id"].'</td>
+			            <td>'.$trace["PlotInfo"]["id"].'<br>'.$langs->trans("PlotSize").': '.$trace["PlotSize"]["id"].'</td>
+			            <td>'.$trace["CropplanInfo"]["id"].'<br>'.$langs->trans("CropplanEstimatedqty").': '.$trace["CropplanEstimatedqty"]["id"].'</td>
+			        </tr>';
+			
 			print "</table>";
 			print '</div>';
 			$farmid = $trace["FarmId"]["id"];

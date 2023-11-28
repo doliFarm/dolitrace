@@ -168,7 +168,14 @@ OrderSupplier=Ordine Fornitore
 OnStock=Caricamento in stock
 ManifacturingOrder=Ordine di lavorazione
 CropPlansToBeValidated=Piano di produzione da validare
-PlotSize=Dimensione (Ha)
+PlotSize=Dimensione appezzamento(Ha)
+ProductTrace=Prodotto
+HarvestInfo=Info raccolta
+PlotsInfo=Info appezzamento
+CropplanInfo=Info Piano produzione
+HarvestDate=Data raccolta
+HarvestQty=Quantità raccolta
+CropplanEstimatedqty=Quantità di produzione totale stimata (kg)
 
 doliCERT = Certif. & Registri BIO
 NewPlot = Nuovo Appezzamento
